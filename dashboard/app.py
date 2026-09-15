@@ -75,13 +75,46 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================================
-# LOAD DỮ LIỆU CÓ CACHING
+# LOAD DỮ LIỆU CÓ CACHING & DỰ PHÒNG ĐƯỜNG DẪN ĐA NỀN TẢNG
 # ============================================================
 @st.cache_data
 def load_data():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    matches_path = os.path.join(base_dir, 'data', 'processed', 'matches_clean.csv')
-    players_path = os.path.join(base_dir, 'data', 'processed', 'players_clean.csv')
+    
+    # Các vị trí tiềm năng chứa file dữ liệu
+    candidates = [
+        (os.path.join(base_dir, 'data', 'processed', 'matches_clean.csv'),
+         os.path.join(base_dir, 'data', 'processed', 'players_clean.csv')),
+        (os.path.join('data', 'processed', 'matches_clean.csv'),
+         os.path.join('data', 'processed', 'players_clean.csv')),
+        (os.path.join('..', 'data', 'processed', 'matches_clean.csv'),
+         os.path.join('..', 'data', 'processed', 'players_clean.csv')),
+    ]
+    
+    matches_path = None
+    players_path = None
+    for m_path, p_path in candidates:
+        if os.path.exists(m_path) and os.path.exists(p_path):
+            matches_path = m_path
+            players_path = p_path
+            break
+            
+    if not matches_path or not players_path:
+        st.error("""
+        ### ❌ Không tìm thấy tệp dữ liệu đã xử lý!
+        Ứng dụng cần 2 tệp dữ liệu sau để hoạt động:
+        - `data/processed/matches_clean.csv`
+        - `data/processed/players_clean.csv`
+        
+        **Cách khắc phục:**
+        1. Đảm bảo thư mục `data/` trong repo đã được tải về đầy đủ.
+        2. Nếu chưa có thư mục `data/processed/`, hãy mở và chạy file `EPL_Data_Analysis.ipynb` để tự động làm sạch và xuất dữ liệu.
+        3. Khởi chạy lại dashboard từ thư mục gốc của repository:
+           ```bash
+           streamlit run dashboard/app.py
+           ```
+        """)
+        st.stop()
     
     matches_df = pd.read_csv(matches_path)
     players_df = pd.read_csv(players_path)
