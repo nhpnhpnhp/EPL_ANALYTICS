@@ -2,6 +2,8 @@
 
 [![Python](https://img.shields.io/badge/Python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue?logo=python)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.30%2B-FF4B4B?logo=streamlit)](https://streamlit.io/)
+[![Records](https://img.shields.io/badge/Records-74%2C350%2B%20EPL%20Rows-success)](#)
+[![Seasons](https://img.shields.io/badge/Seasons-32%20Seasons%20(1993--2025)-purple)](#)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](#)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](#)
 
@@ -13,31 +15,52 @@
 
 ## 📑 Mục Lục
 1. [Giới Thiệu Đề Tài & Điểm Nổi Bật](#1-giới-thiệu-đề-tài--điểm-nổi-bật)
-2. [Cấu Trúc Thư Mục Chuẩn (Project Structure)](#2-cấu-trúc-thư-mục-chuẩn-project-structure)
-3. [Quy Mô Dữ Liệu Lịch Sử (Datasets)](#3-quy-mô-dữ-liệu-lịch-sử-datasets)
-4. [Hướng Dẫn Cài Đặt & Chạy Trên Mọi Máy (Quick Start)](#4-hướng-dẫn-cài-đặt--chạy-trên-mọi-máy-quick-start)
+2. [Quy Mô Dữ Liệu Thuần EPL Mở Rộng (>74,000 Bản Ghi)](#2-quy-mô-dữ-liệu-thuần-epl-mở-rộng-74000-bản-ghi)
+3. [Cấu Trúc Thư Mục Chuẩn (Project Structure)](#3-cấu-trúc-thư-mục-chuẩn-project-structure)
+4. [Các Biểu Đồ Nâng Cao Được Tích Hợp Trên Dashboard](#4-các-biểu-đồ-nâng-cao-được-tích-hợp-trên-dashboard)
+5. [Hướng Dẫn Cài Đặt & Chạy Trên Mọi Máy (Quick Start)](#5-hướng-dẫn-cài-đặt--chạy-trên-mọi-máy-quick-start)
    - [Yêu cầu tiên quyết](#yêu-cầu-tiên-quyết)
    - [Bước 1: Clone Repository](#bước-1-clone-repository)
    - [Bước 2: Cài đặt Môi Trường Ảo & Thư Viện](#bước-2-cài-đặt-môi-trường-ảo--thư-viện)
    - [Bước 3: Khởi chạy Streamlit Dashboard](#bước-3-khởi-chạy-streamlit-dashboard)
    - [Bước 4: Mở và Chạy Jupyter Notebook](#bước-4-mở-và-chạy-jupyter-notebook)
-5. [Tóm Tắt Kết Quả 8 Câu Hỏi Nghiên Cứu (Research Findings)](#5-tóm-tắt-kết-quả-8-câu-hỏi-nghiên-cứu-research-findings)
-6. [Mô Hình Học Máy Dự Đoán Trận Đấu (AI Match Predictor)](#6-mô-hình-học-máy-dự-đoán-trận-đấu-ai-match-predictor)
-7. [Khắc Phục Sự Cố Thường Gặp (Troubleshooting & FAQ)](#7-khắc-phục-sự-cố-thường-gặp-troubleshooting--faq)
+6. [Tóm Tắt Kết Quả 8 Câu Hỏi Nghiên Cứu (Research Findings)](#6-tóm-tắt-kết-quả-8-câu-hỏi-nghiên-cứu-research-findings)
+7. [Mô Hình Học Máy Dự Đoán Trận Đấu (AI Match Predictor)](#7-mô-hình-học-máy-dự-đoán-trận-đấu-ai-match-predictor)
+8. [Khắc Phục Sự Cố Thường Gặp (Troubleshooting & FAQ)](#8-khắc-phục-sự-cố-thường-gặp-troubleshooting--faq)
 
 ---
 
 ## 1. Giới Thiệu Đề Tài & Điểm Nổi Bật
 
 Dự án **EPL Analytics** là một giải pháp phân tích dữ liệu thể thao toàn diện, kết hợp chặt chẽ giữa:
-- **Data Engineering**: Thu thập, chuẩn hóa và tổng hợp dữ liệu trận đấu qua 20 mùa giải và dữ liệu cầu thủ chuyên sâu qua 11 mùa giải.
-- **Exploratory Data Analysis (EDA)**: Giải quyết 8 câu hỏi nghiên cứu then chốt của bóng đá hiện đại với biểu đồ trực quan cao cấp (Matplotlib, Seaborn, Plotly).
-- **Machine Learning**: Xây dựng mô hình phân loại dự đoán kết quả trận đấu (Thắng - Hòa - Thua) dựa trên chuỗi phong độ cuốn chiếu (Rolling 5 matches), kiểm thử ngoài thời gian (Out-of-Time Validation) hoàn toàn không rò rỉ dữ liệu (No Data Leakage).
-- **Interactive Web App**: Ứng dụng **Streamlit Interactive Hub** cung cấp giao diện trực quan hóa dữ liệu theo chuẩn phong cách Premier League, cho phép người dùng tùy biến phân tích và dự đoán trận đấu theo thời gian thực.
+- **Data Engineering**: Thu thập, chuẩn hóa và tổng hợp **100% dữ liệu thuần Ngoại Hạng Anh** qua **32 mùa giải lịch sử (1993/94 – 2024/25)** với hơn **74,300+ bản ghi**.
+- **Exploratory Data Analysis (EDA)**: Giải quyết 8 câu hỏi nghiên cứu then chốt của bóng đá hiện đại với hệ thống biểu đồ nâng cao: **World Choropleth Map**, **Violin Plot**, **Tactical Correlation Heatmap**, **Season Matrix Heatmap**, **Radar Spider Chart**, **Treemap**.
+- **Machine Learning**: Xây dựng mô hình phân loại dự đoán kết quả trận đấu (Thắng - Hòa - Thua) dựa trên chuỗi phong độ cuốn chiếu (*Rolling 5-match window*), kiểm thử ngoài thời gian (*Out-of-Time Validation*) hoàn toàn không rò rỉ dữ liệu (*No Data Leakage*).
+- **Interactive Web App**: Ứng dụng **Streamlit Interactive Hub** được thiết kế lại theo dạng thẻ **Tabs (`st.tabs`)** thông minh, mang phong cách Premier League hiện đại, hỗ trợ tương tác trực quan theo thời gian thực.
 
 ---
 
-## 2. Cấu Trúc Thư Mục Chuẩn (Project Structure)
+## 2. Quy Mô Dữ Liệu Thuần EPL Mở Rộng (>74,000 Bản Ghi)
+
+Dữ liệu của đồ án hoàn toàn thuộc về giải Ngoại Hạng Anh (English Premier League), đạt quy mô kỷ lục:
+
+1. **Dữ liệu trận đấu (Match Data - 32 Mùa Giải Liên Tiếp):**
+   - **Phạm vi:** Từ mùa giải **1993/94 đến 2024/25** (32 năm lịch sử Ngoại Hạng Anh).
+   - **Quy mô:** **12,234 trận đấu** (`matches_clean.csv`).
+   - **Chỉ số:** Ngày thi đấu, Đội nhà, Đội khách, Tỷ số cả trận (`FTHG`, `FTAG`, `FTR`), Tỷ số hiệp 1 (`HTHG`, `HTAG`), Cú sút (`HS`, `AS`), Sút trúng đích (`HST`, `AST`), Phạt góc (`HC`, `AC`), Phạm lỗi (`HF`, `AF`), Thẻ vàng (`HY`, `AY`), Thẻ đỏ (`HR`, `AR`).
+
+2. **Dữ liệu cầu thủ đa tầng (Player Performance Data - Thuần EPL):**
+   - **Quy mô:** **62,117 bản ghi** (`players_clean.csv`).
+   - **Bao gồm:**
+     - **5,887 bản ghi tổng hợp mùa giải** (Understat 2014-2025): Bàn thắng, kiến tạo, $xG, xA, npxG$, cú sút, key passes, số phút.
+     - **56,230 bản ghi nhật ký từng trận** (FPL Match Performance): Điểm số, phong độ từng vòng đấu, $xGI$, ICT Index.
+     - **Bản đồ quốc tịch:** Tích hợp mã quốc gia ISO-3 của hơn **2,460+ cầu thủ** đến từ **50 quốc gia** trên thế giới.
+
+👉 **TỔNG QUY MÔ DỮ LIỆU ĐÃ XỬ LÝ:** **12,234 + 62,117 = 74,351 BẢN GHI THUẦN NGOẠI HẠNG ANH!**
+
+---
+
+## 3. Cấu Trúc Thư Mục Chuẩn (Project Structure)
 
 ```text
 EPL_ANALYTICS/
@@ -46,16 +69,16 @@ EPL_ANALYTICS/
 │
 ├── data/
 │   ├── raw/
-│   │   ├── matches/                # 20 file CSV kết quả trận đấu (từ mùa 2005-06 đến 2024-25)
-│   │   └── players/                # Dữ liệu cầu thủ chi tiết từ Understat (11 mùa giải)
+│   │   ├── matches/                # 32 file CSV kết quả trận đấu (từ mùa 1993-94 đến 2024-25)
+│   │   └── players/                # Dữ liệu cầu thủ Understat & FPL match logs
 │   │
 │   └── processed/
-│       ├── matches_clean.csv       # 7,601 trận đấu sau khi làm sạch & feature engineering
-│       └── players_clean.csv       # 5,887 bản ghi cầu thủ chuẩn hóa với số liệu xG/xA
+│       ├── matches_clean.csv       # 12,234 trận đấu sau khi làm sạch (1993 - 2025)
+│       └── players_clean.csv       # 62,117 bản ghi cầu thủ chuẩn hóa với xG/xA và quốc tịch
 │
 ├── dashboard/                      # Thư mục ứng dụng Streamlit Dashboard
-│   ├── app.py                      # Mã nguồn chính của ứng dụng Dashboard (5 trang chuyên sâu)
-│   └── README_Dashboard.md         # Tài liệu hướng dẫn riêng cho Dashboard
+│   ├── app.py                      # Mã nguồn ứng dụng (5 trang chuyên sâu, bố cục Tabs hiện đại)
+│   └── README_Dashboard.md         # Hướng dẫn chi tiết cho Dashboard
 │
 ├── report/                         # Thư mục chứa báo cáo đồ án (PDF/Word)
 │   └── .gitkeep
@@ -63,40 +86,37 @@ EPL_ANALYTICS/
 ├── slides/                         # Thư mục chứa slide thuyết trình bảo vệ đồ án (PPTX/PDF)
 │   └── .gitkeep
 │
-├── run_dashboard.bat               # Script khởi chạy 1-click cho Windows
-├── run_dashboard.sh                # Script khởi chạy 1-click cho macOS / Linux
+├── run_dashboard.bat               # Script khởi chạy 1-click tự động cho Windows (CRLF)
+├── run_dashboard.sh                # Script khởi chạy 1-click tự động cho macOS / Linux
 ├── requirements.txt                # Danh sách thư viện Python phụ thuộc
-├── .gitignore                      # Cấu hình loại bỏ file rác, cache và môi trường ảo
+├── .gitignore                      # Cấu hình loại bỏ file rác, cache và virtual environment
 ├── .gitattributes                  # Cấu hình chuẩn hóa ký tự xuống dòng
 └── README.md                       # Tài liệu tổng thể hướng dẫn đồ án
 ```
 
 ---
 
-## 3. Quy Mô Dữ Liệu Lịch Sử (Datasets)
+## 4. Các Biểu Đồ Nâng Cao Được Tích Hợp Trên Dashboard
 
-Dự án khai thác 2 nguồn dữ liệu lớn, uy tín hàng đầu thế giới về thống kê bóng đá:
-
-1. **Dữ liệu trận đấu (Match Data - Football-Data.co.uk):**
-   - **Phạm vi:** **20 mùa giải liên tiếp (2005/06 – 2024/25)**.
-   - **Quy mô:** **7,601 trận đấu**.
-   - **Chỉ số:** Tỷ số hiệp 1 & chung cuộc, cú sút (`HS`, `AS`), sút trúng đích (`HST`, `AST`), phạt góc (`HC`, `AC`), phạm lỗi (`HF`, `AF`), thẻ vàng (`HY`, `AY`), thẻ đỏ (`HR`, `AR`).
-
-2. **Dữ liệu cầu thủ đa mùa giải (Player Data - Understat):**
-   - **Phạm vi:** **11 mùa giải liên tiếp (2014/15 – 2024/25)**.
-   - **Quy mô:** **5,887 bản ghi cầu thủ** thi đấu tại Premier League.
-   - **Chỉ số:** Số trận, số phút thi đấu, bàn thắng, kiến tạo, cú sút, đường chuyền quyết định (*Key Passes*), thẻ phạt và các thông số kỳ vọng hiện đại ($xG, xA, npxG, xG90, xA90$).
+| Biểu Đồ Nâng Cao | Thư Viện | Ý Nghĩa Phân Tích & Điểm Nhấn |
+| :--- | :--- | :--- |
+| 🌍 **World Choropleth Map (Bản đồ Dấu ấn Toàn cầu)** | `plotly.express.choropleth` | Thể hiện mức độ quốc tế hóa của Premier League qua 50 quốc gia: tô màu theo Số lượng cầu thủ, Tổng bàn thắng, Tổng kiến tạo. |
+| 🎻 **Violin Plot (Mật độ phân phối chỉ số)** | `plotly.express.violin` | Trực quan hóa đường cong mật độ xác suất (KDE) kết hợp Boxplot thể hiện sự phân hóa chỉ số $xG, xA$, Goals theo Vị trí thi đấu (Tiền đạo, Tiền vệ, Hậu vệ). |
+| 🗺️ **Tactical Correlation Heatmap** | `plotly.express.imshow` | Ma trận tương quan hệ số Pearson giữa các chỉ số kỹ thuật (Bàn thắng, Sút, Sút trúng đích, Phạt góc, Phạm lỗi, Thẻ phạt). |
+| 📅 **Club Season Performance Heatmap** | `plotly.graph_objects.Heatmap` | Ma trận nhiệt 15 mùa giải x Top 12 CLB thể hiện điểm số đạt được qua từng thời kỳ lịch sử. |
+| 🕸️ **Radar Spider Chart (Đa giác kỹ năng)** | `plotly.graph_objects.Scatterpolar` | Biểu đồ mạng nhện đa giác 7 trục kỹ năng (Dứt điểm, xG, Kiến tạo, xA, Cú sút, Tạo cơ hội, Kỷ luật) khi so sánh đối đầu giữa 2 ngôi sao. |
+| 🌳 **Treemap (Cây phân cấp bàn thắng)** | `plotly.express.treemap` | Cây phân cấp trực quan hóa cơ cấu bàn thắng: Câu lạc bộ EPL -> Cầu thủ ghi bàn chủ lực (tô màu theo độ vượt kỳ vọng $xG\_Diff$). |
 
 ---
 
-## 4. Hướng Dẫn Cài Đặt & Chạy Trên Mọi Máy (Quick Start)
+## 5. Hướng Dẫn Cài Đặt & Chạy Trên Mọi Máy (Quick Start)
 
 Dự án được cấu hình độc lập hoàn toàn với đường dẫn tuyệt đối, cho phép chạy ngay trên **Windows**, **macOS** hoặc **Linux**.
 
 ### Yêu cầu tiên quyết
 - Đã cài đặt **Python 3.9 trở lên** (khuyến nghị Python 3.10, 3.11 hoặc 3.12). Tải tại: [python.org](https://www.python.org/downloads/).
-  *(Trên Windows, nhớ tích chọn **"Add Python to PATH"** trong quá trình cài đặt).*
-- Đã cài đặt **Git** (hoặc tải trực tiếp mã nguồn bằng file ZIP từ GitHub).
+  *(Trên Windows, nhớ tích chọn **"Add Python to PATH"** khi cài đặt).*
+- Đã cài đặt **Git** (hoặc tải mã nguồn file ZIP từ GitHub).
 
 ---
 
@@ -111,8 +131,6 @@ cd EPL_ANALYTICS
 
 ### Bước 2: Cài đặt Môi Trường Ảo & Thư Viện
 
-Khuyến nghị luôn sử dụng môi trường ảo (`.venv`) để tránh xung đột phiên bản thư viện giữa các dự án:
-
 #### 🔹 Trên Windows (Command Prompt hoặc PowerShell):
 ```cmd
 # 1. Tạo môi trường ảo
@@ -124,21 +142,14 @@ python -m venv .venv
 # Nếu dùng PowerShell:
 .venv\Scripts\Activate.ps1
 
-# 3. Nâng cấp pip và cài đặt thư viện
-python -m pip install --upgrade pip
+# 3. Cài đặt thư viện
 pip install -r requirements.txt
 ```
 
 #### 🔹 Trên macOS / Linux (Terminal):
 ```bash
-# 1. Tạo môi trường ảo
 python3 -m venv .venv
-
-# 2. Kích hoạt môi trường ảo
 source .venv/bin/activate
-
-# 3. Nâng cấp pip và cài đặt thư viện
-pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
@@ -146,10 +157,8 @@ pip install -r requirements.txt
 
 ### Bước 3: Khởi chạy Streamlit Dashboard
 
-Bạn có thể chạy ứng dụng theo một trong hai cách:
-
 #### ⚡ Cách 1: Chạy bằng Script 1-Click (Tự động hoàn toàn)
-- **Trên Windows**: Nhấp đúp (Double-click) vào file `run_dashboard.bat` (hoặc gõ `.\run_dashboard.bat` trong terminal). Script sẽ tự động kiểm tra, tạo môi trường nếu chưa có và bật Dashboard ngay lập tức.
+- **Trên Windows**: Nhấp đúp vào file `run_dashboard.bat`. Script sẽ tự động nhận diện môi trường `.venv` và bật Dashboard ngay lập tức.
 - **Trên macOS / Linux**: Mở Terminal và chạy:
   ```bash
   chmod +x run_dashboard.sh
@@ -157,113 +166,70 @@ Bạn có thể chạy ứng dụng theo một trong hai cách:
   ```
 
 #### 🛠️ Cách 2: Chạy thủ công qua lệnh
-Đảm bảo đã kích hoạt `.venv`, sau đó chạy:
 ```bash
+# Trên Windows:
+.venv\Scripts\python.exe -m streamlit run dashboard\app.py
+
+# Hoặc:
 streamlit run dashboard/app.py
 ```
 
-Sau khi khởi chạy, ứng dụng sẽ tự động mở trên trình duyệt tại:  
-👉 **`http://localhost:8501`**
+Sau khi khởi chạy, trình duyệt web sẽ tự động mở tại: 👉 **`http://localhost:8501`**
 
 ---
 
 ### Bước 4: Mở và Chạy Jupyter Notebook
 
-File `EPL_Data_Analysis.ipynb` chứa toàn bộ 73 cells code, từ khâu làm sạch dữ liệu thô đến EDA, kiểm định giả thuyết thống kê và huấn luyện mô hình Machine Learning.
-
-1. **Khởi chạy bằng Jupyter Notebook / Jupyter Lab**:
-   ```bash
-   # Kích hoạt .venv rồi chạy:
-   jupyter notebook EPL_Data_Analysis.ipynb
-   ```
-2. **Khởi chạy trên Visual Studio Code (Khuyên dùng)**:
-   - Mở thư mục dự án trong VS Code (`File > Open Folder... > EPL_ANALYTICS`).
-   - Mở file `EPL_Data_Analysis.ipynb`.
-   - Ở góc trên cùng bên phải của Notebook, nhấp vào **Select Kernel** -> Chọn **Python Environments...** -> Chọn môi trường ảo `.venv` vừa tạo.
-   - Bạn có thể xem ngay các biểu đồ có sẵn hoặc bấm **"Run All"** để tái hiện toàn bộ phân tích từ đầu đến cuối một cách mượt mà.
+1. Mở thư mục dự án trong **Visual Studio Code**.
+2. Mở file `EPL_Data_Analysis.ipynb`.
+3. Nhấp vào **Select Kernel** ở góc trên cùng bên phải -> chọn môi trường ảo `.venv`.
+4. Bấm **"Run All"** để tái hiện toàn bộ phân tích từ đầu đến cuối một cách mượt mà.
 
 ---
 
-## 5. Tóm Tắt Kết Quả 8 Câu Hỏi Nghiên Cứu (Research Findings)
+## 6. Tóm Tắt Kết Quả 8 Câu Hỏi Nghiên Cứu (Research Findings)
 
-| Mã RQ | Câu hỏi nghiên cứu | Phát hiện & Kết luận chính |
+| Mã RQ | Câu hỏi nghiên cứu | Phát hiện & Kết luận chính trên tập dữ liệu mở rộng 32 mùa giải |
 | :--- | :--- | :--- |
-| **RQ1** | Xu hướng bàn thắng EPL thay đổi thế nào qua 20 năm? | Giai đoạn 2005-2010 duy trì ổn định ~2.5 bàn/trận; giai đoạn 2022-2024 tăng vọt lên mức kỷ lục **3.28 bàn/trận** nhờ triết lý pressing tầm cao và quy định cộng bù giờ mới. |
-| **RQ2** | Lợi thế sân nhà (*Home Advantage*) có thực sự tồn tại? | Duy trì vững chắc suốt 20 năm (~47% chủ nhà thắng). Riêng mùa dịch COVID 2020-21 (sân không khán giả), tỷ lệ chủ nhà thắng giảm chạm đáy còn **37.9%**, chứng minh vai trò to lớn của sức ép cổ động viên. |
-| **RQ3** | Đội bóng nào ổn định và xuất sắc nhất qua 2 thập kỷ? | **Man City, Man United, Chelsea, Arsenal, Liverpool** thống trị tuyệt đối với trên 400-450 trận thắng. Trong đó Man City thể hiện sự vượt trội áp đảo ở thập kỷ gần nhất (tỷ lệ thắng >70%). |
-| **RQ4** | Mối quan hệ giữa số cú sút và bàn thắng? | Sút trúng đích (*Shots on Target*) có tương quan tuyến tính rất mạnh với số bàn thắng ($r \approx 0.98$). Tuy nhiên, chỉ số chất lượng vị trí dứt điểm ($xG$) mang tính quyết định cao hơn tổng số lượng sút. |
-| **RQ5** | Cầu thủ nào có hiệu suất ghi bàn xuất sắc nhất thập kỷ? | **Harry Kane** và **Mohamed Salah** là 2 chân sút ổn định nhất (>150-200 bàn). **Erling Haaland** thiết lập hiệu suất vô tiền khoáng hậu (>1.0 bàn/90 phút). **Kevin De Bruyne** thống trị về kiến tạo (>100 assists). |
-| **RQ6** | Hiệu suất thi đấu khác biệt thế nào theo vị trí? | Phân hóa rõ rệt: Tiền đạo tối ưu hóa số cú sút & tỷ lệ chuyển hóa bàn thắng; Tiền vệ kiến thiết cơ hội ($xA$, *Key Passes*); Hậu vệ đóng góp ổn định qua thu hồi bóng và dâng cao hỗ trợ biên. |
-| **RQ7** | Chỉ số trong trận nào tác động mạnh nhất đến kết quả? | Số cú sút trúng đích (`HST`, `AST`) và thẻ phạt ảnh hưởng trực tiếp nhất đến kết quả chung cuộc. Phạt góc có tương quan tương đối thấp với khả năng tạo bàn thắng. |
-| **RQ8** | Có thể dự đoán kết quả trận đấu mà không bị rò rỉ dữ liệu? | Áp dụng mô hình **Random Forest** dựa trên 5 trận gần nhất (*Rolling 5-match form*), độ chính xác đạt **~51%** trên tập kiểm thử ngoài thời gian (2 mùa giải 2023-2025). |
+| **RQ1** | Xu hướng bàn thắng EPL thay đổi thế nào qua 32 năm? | Giai đoạn 1993-2015 dao động ổn định ~2.5 - 2.7 bàn/trận; giai đoạn 2022-2024 tăng vọt lên mức kỷ lục **3.28 bàn/trận** nhờ chiến thuật pressing hiện đại và thời gian bù giờ dài hơn. |
+| **RQ2** | Lợi thế sân nhà (*Home Advantage*) có thực sự tồn tại? | Duy trì vững chắc suốt 32 năm (~47% chủ nhà thắng). Riêng mùa dịch COVID 2020-21 (không khán giả), tỷ lệ chủ nhà thắng giảm xuống mức kỷ lục chỉ còn **37.9%**, chứng minh vai trò to lớn của sức ép khán đài. |
+| **RQ3** | Đội bóng nào ổn định và xuất sắc nhất qua hơn 3 thập kỷ? | **Manchester United, Arsenal, Chelsea, Liverpool, Manchester City** thống trị tuyệt đối về số điểm và số trận thắng trong kỷ nguyên Ngoại Hạng Anh. |
+| **RQ4** | Mối quan hệ giữa số cú sút và bàn thắng? | Sút trúng đích (*Shots on Target*) có tương quan tuyến tính rất mạnh với bàn thắng ($r \approx 0.98$). Tuy nhiên chất lượng góc sút ($xG$) mang tính quyết định cao hơn số lượng sút đơn thuần. |
+| **RQ5** | Cầu thủ nào có hiệu suất ghi bàn xuất sắc nhất thập kỷ? | **Harry Kane** và **Mohamed Salah** là hai cỗ máy săn bàn ổn định nhất (>150-200 bàn). **Erling Haaland** đạt hiệu suất Per 90 vô tiền khoáng hậu (>1.0 bàn/90 phút). **Kevin De Bruyne** thống trị về kiến tạo. |
+| **RQ6** | Hiệu suất thi đấu khác biệt thế nào theo vị trí? | Biểu đồ **Violin Plot** phân hóa rõ nét: Tiền đạo tập trung tối đa vào số cú sút & bàn thắng; Tiền vệ chiếm lĩnh kiến tạo ($xA$) và Key Passes; Hậu vệ đóng góp ổn định qua thu hồi bóng và dâng cao hỗ trợ. |
+| **RQ7** | Chỉ số trong trận nào tác động mạnh nhất đến kết quả? | Số cú sút trúng đích (`HST`, `AST`) và thẻ phạt ảnh hưởng trực tiếp nhất tới kết quả trận đấu. Phạt góc có tương quan tương đối thấp với khả năng tạo bàn thắng. |
+| **RQ8** | Có thể dự đoán kết quả trận đấu mà không bị rò rỉ dữ liệu? | Mô hình **Random Forest** dựa trên phong độ 5 trận gần nhất (*Rolling 5-match window*) đạt độ chính xác **~51%** trên tập kiểm thử ngoài thời gian (2 mùa giải gần nhất). |
 
 ---
 
-## 6. Mô Hình Học Máy Dự Đoán Trận Đấu (AI Match Predictor)
+## 7. Mô Hình Học Máy Dự Đoán Trận Đấu (AI Match Predictor)
 
-Mô hình dự đoán trong đồ án được thiết kế với chuẩn mực chống rò rỉ dữ liệu nghiêm ngặt:
-- **Phương pháp kỹ thuật đặc trưng**: Tính toán trung bình trượt của 5 trận đấu gần nhất (*Rolling 5-match window*) theo từng đội bóng cho các chỉ số: Số bàn thắng/bàn thua, số cú sút, sút trúng đích, phạt góc, tỷ lệ điểm kiếm được.
-- **Phân chia dữ liệu theo thời gian (Out-of-Time Split)**:
-  - **Tập Train**: 18 mùa giải đầu (2005/06 đến 2022/23, ~6,840 trận).
-  - **Tập Test**: 2 mùa giải gần nhất (2023/24 và 2024/25, ~760 trận).
-- **Thuật toán áp dụng**: So sánh giữa `Logistic Regression` (Baseline) và `Random Forest Classifier`.
-- **Tích hợp Dashboard**: Trang 5 của Streamlit Hub cho phép chọn 2 CLB bất kỳ để mô phỏng trận đấu và xuất ra xác suất % Thắng - Hòa - Thua theo thời gian thực.
+- **Đặc trưng đầu vào**: Điểm số, bàn thắng ghi được, bàn thua trung bình trong 5 trận gần nhất của Đội Chủ Nhà và Đội Khách.
+- **Phân chia dữ liệu theo thời gian (Out-of-Time Validation)**: Đảm bảo tính trung thực tuyệt đối, không rò rỉ thông tin tương lai.
+- **Tích hợp Dashboard**: Trang 5 cung cấp công cụ mô phỏng dự đoán trận đấu theo thời gian thực và biểu đồ Feature Importance giải thích quyết định của mô hình.
 
 ---
 
-## 7. Khắc Phục Sự Cố Thường Gặp (Troubleshooting & FAQ)
+## 8. Khắc Phục Sự Cố Thường Gặp (Troubleshooting & FAQ)
 
-### ❓ 1. Lỗi PowerShell: "running scripts is disabled on this system"
-**Nguyên nhân:** Chính sách bảo mật mặc định của Windows PowerShell không cho phép thực thi script kích hoạt `.venv\Scripts\Activate.ps1`.  
-**Cách xử lý:** Mở PowerShell và cấp quyền tạm thời cho phiên làm việc hiện tại:
+### ❓ 1. Lỗi Windows Security: "Cài đặt bảo mật Internet của bạn đã ngăn việc mở một hoặc nhiều tệp"
+**Cách xử lý:** Nhấp chuột phải vào file `run_dashboard.bat` -> Chọn **Properties** -> Ở mục Security dưới cùng, tích chọn ô ☑️ **Unblock** -> Nhấn **OK**.  
+*Hoặc mở terminal chạy trực tiếp: `.venv\Scripts\python.exe -m streamlit run dashboard\app.py`.*
+
+### ❓ 2. Lỗi PowerShell: "running scripts is disabled on this system"
+**Cách xử lý:** Chạy lệnh sau trên PowerShell để cấp quyền cho phiên làm việc:
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .venv\Scripts\Activate.ps1
 ```
-*Hoặc đơn giản hơn: sử dụng Command Prompt (`cmd.exe`) và chạy `.venv\Scripts\activate.bat`, hoặc nhấp đúp vào `run_dashboard.bat`.*
 
-### ❓ 2. Lỗi "streamlit: command not found" hoặc "The term 'streamlit' is not recognized"
-**Nguyên nhân:** Bạn chưa kích hoạt môi trường ảo `.venv` hoặc chưa cài đặt `requirements.txt`.  
-**Cách xử lý:**
-```bash
-# Đảm bảo đã kích hoạt môi trường ảo trước:
-# Trên Windows:
-.venv\Scripts\activate
-# Trên macOS/Linux:
-source .venv/bin/activate
-
-# Cài đặt lại thư viện:
-pip install -r requirements.txt
-```
-*Bạn cũng có thể chạy trực tiếp thông qua Python:*
-```bash
-python -m streamlit run dashboard/app.py
-```
-
-### ❓ 3. Lỗi xung đột cổng: "Port 8501 is already in use"
-**Cách xử lý:** Chỉ định một cổng khả dụng khác (ví dụ `8502`):
+### ❓ 3. Lỗi chiếm dụng cổng: "Port 8501 is already in use"
+**Cách xử lý:** Chỉ định một cổng khả dụng khác:
 ```bash
 streamlit run dashboard/app.py --server.port 8502
 ```
 
-### ❓ 4. VS Code không nhận diện kernel của `.venv` khi mở Notebook
-**Cách xử lý:**
-1. Cài đặt tiện ích mở rộng **Python** và **Jupyter** trên VS Code.
-2. Mở file `EPL_Data_Analysis.ipynb`.
-3. Bấm vào nút chọn Kernel ở góc phải trên -> chọn **Enter interpreter path...** -> Duyệt đến file `.venv/Scripts/python.exe` (Windows) hoặc `.venv/bin/python` (macOS/Linux).
-
-### ❓ 5. Không tìm thấy dữ liệu khi chạy Dashboard
-**Cách xử lý:** Đảm bảo bạn đang đứng tại thư mục gốc của repository khi chạy lệnh:
-```bash
-# ĐÚNG:
-streamlit run dashboard/app.py
-
-# Nếu đứng trong thư mục dashboard/:
-streamlit run app.py
-```
-*(Hệ thống đã được lập trình dự phòng đa tầng để tự động tìm kiếm thư mục dữ liệu ở cả thư mục cha và thư mục hiện hành).*
-
 ---
 
 ## 📜 Giấy Phép & Bản Quyền (License)
-Dự án được phân phối dưới giấy phép mã nguồn mở MIT License. Dữ liệu phục vụ cho mục đích học tập và nghiên cứu phi thương mại.
+Dự án được phân phối dưới giấy phép mã nguồn mở MIT License. Toàn bộ dữ liệu phục vụ mục đích học tập và nghiên cứu phi thương mại.

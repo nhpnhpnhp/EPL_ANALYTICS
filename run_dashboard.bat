@@ -1,62 +1,88 @@
 @echo off
-chcp 65001 > nul
-title EPL Analytics Hub - Khoi Chay Ung Dung
+setlocal EnableDelayedExpansion
+title EPL Analytics Hub
+
+cd /d "%~dp0"
 
 echo ============================================================
 echo         EPL ANALYTICS HUB - STREAMLIT DASHBOARD
 echo ============================================================
 echo.
 
-:: Di chuyển đến thư mục chứa file script
-cd /d "%~dp0"
+REM 1. Neu da co .venv san trong project, chay ngay lap tuc
+if exist "%~dp0.venv\Scripts\python.exe" (
+    echo [1/2] Phat hien moi truong ao .venv san co trong du an.
+    echo [2/2] Dang khoi chay Streamlit Dashboard tai http://localhost:8501 ...
+    echo Nhan Ctrl+C de dung ung dung.
+    echo.
+    "%~dp0.venv\Scripts\python.exe" -m streamlit run "%~dp0dashboard\app.py"
+    goto :done
+)
 
-:: 1. Kiểm tra Python
+REM 2. Neu chua co .venv, tim Python tren he thong
+set "PY_CMD="
+
 where python >nul 2>nul
-if %errorlevel% neq 0 (
+if !errorlevel! equ 0 (
+    set "PY_CMD=python"
+) else (
+    where py >nul 2>nul
+    if !errorlevel! equ 0 (
+        set "PY_CMD=py"
+    )
+)
+
+if "!PY_CMD!"=="" (
+    for /d %%D in ("%LOCALAPPDATA%\Programs\Python\Python*") do (
+        if exist "%%D\python.exe" set "PY_CMD=%%D\python.exe"
+    )
+)
+
+if "!PY_CMD!"=="" (
+    for /d %%D in ("%APPDATA%\uv\python\cpython-*") do (
+        if exist "%%D\python.exe" set "PY_CMD=%%D\python.exe"
+    )
+)
+
+if "!PY_CMD!"=="" (
     echo [LOI] Khong tim thay Python tren he thong cua ban!
     echo Vui long cai dat Python 3.9 tro len tu: https://www.python.org/downloads/
-    echo Nho tich chon "Add Python to PATH" khi cai dat.
+    echo (Nho tich chon "Add Python to PATH" khi cai dat)
     echo.
     pause
     exit /b 1
 )
 
-:: 2. Kiểm tra hoặc tạo môi trường ảo .venv
-if not exist ".venv\Scripts\activate.bat" (
-    echo [1/3] Phat hien chua co moi truong ao (.venv).
-    echo [2/3] Dang khoi tao .venv va cai dat thu vien phu thuoc...
-    echo (Qua trinh nay chi dien ra 1 lan duy nhat luc ban dau, vui long doi giay lat...)
-    echo.
-    python -m venv .venv
-    if %errorlevel% neq 0 (
-        echo [LOI] Khong the tao moi truong ao .venv.
-        pause
-        exit /b 1
-    )
-    .venv\Scripts\python.exe -m pip install --upgrade pip
-    .venv\Scripts\python.exe -m pip install -r requirements.txt
-    if %errorlevel% neq 0 (
-        echo [LOI] Gap su co khi cai dat thu vien tu requirements.txt.
-        pause
-        exit /b 1
-    )
-    echo [HOAN TAT] Cai dat thu vien thanh cong!
-    echo.
+REM 3. Khoi tao .venv va cai dat thu vien phu thuoc
+echo [1/3] Dang khoi tao moi truong ao .venv bang "!PY_CMD!" ...
+"!PY_CMD!" -m venv "%~dp0.venv"
+if !errorlevel! neq 0 (
+    echo [LOI] Khong the tao moi truong ao .venv.
+    pause
+    exit /b 1
 )
 
-:: 3. Chạy Streamlit Dashboard
-echo [3/3] Dang khoi chay Streamlit Dashboard tai http://localhost:8501 ...
-echo Nhan Ctrl+C tren cua so nay de dung Dashboard.
+echo [2/3] Dang cai dat thu vien tu requirements.txt...
+echo (Qua trinh nay chi dien ra 1 lan duy nhat luc ban dau, vui long doi vai phut...)
+"%~dp0.venv\Scripts\python.exe" -m pip install --upgrade pip
+"%~dp0.venv\Scripts\python.exe" -m pip install -r "%~dp0requirements.txt"
+if !errorlevel! neq 0 (
+    echo [LOI] Gap su co khi cai dat requirements.txt.
+    pause
+    exit /b 1
+)
+
+REM 4. Khoi chay Streamlit
 echo.
+echo [3/3] Dang khoi chay Streamlit Dashboard tai http://localhost:8501 ...
+echo Nhan Ctrl+C de dung Dashboard.
+echo.
+"%~dp0.venv\Scripts\python.exe" -m streamlit run "%~dp0dashboard\app.py"
 
-if exist ".venv\Scripts\python.exe" (
-    .venv\Scripts\python.exe -m streamlit run dashboard\app.py
-) else (
-    python -m streamlit run dashboard\app.py
-)
-
+:done
 if %errorlevel% neq 0 (
     echo.
-    echo [THONG BAO] Ung dung da dong hoac gap loi khi chay.
+    echo [THONG BAO] Dashboard da dung.
     pause
 )
+
