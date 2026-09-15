@@ -235,7 +235,7 @@ if selected_page == "📊 Tổng Quan & Lịch Sử EPL":
             height=400,
             margin=dict(l=40, r=40, t=60, b=40)
         )
-        st.plotly_chart(fig_goals, use_container_width=True)
+        st.plotly_chart(fig_goals, width='stretch')
         
     with col_chart2:
         # Donut chart kết quả trận đấu
@@ -249,7 +249,7 @@ if selected_page == "📊 Tổng Quan & Lịch Sử EPL":
             color_discrete_map={'Chủ Nhà Thắng': '#2ecc71', 'Hòa': '#f39c12', 'Đội Khách Thắng': '#e74c3c'}
         )
         fig_pie.update_layout(height=400, margin=dict(l=20, r=20, t=60, b=20))
-        st.plotly_chart(fig_pie, use_container_width=True)
+        st.plotly_chart(fig_pie, width='stretch')
         
     # Phân tích sâu về Lợi thế sân nhà & Tác động của COVID-19
     st.markdown("### 🏟️ Phân Tích Lợi Thế Sân Nhà & Tác Động Giai Đoạn COVID-19")
@@ -273,7 +273,7 @@ if selected_page == "📊 Tổng Quan & Lịch Sử EPL":
         annotation_text="COVID-19 (Không khán giả)", annotation_position="top left"
     )
     fig_adv.update_layout(height=380, hovermode='x unified')
-    st.plotly_chart(fig_adv, use_container_width=True)
+    st.plotly_chart(fig_adv, width='stretch')
 
 # ============================================================
 # TRANG 2: HIỆU SUẤT CÂU LẠC BỘ & BẢNG XẾP HẠNG
@@ -339,7 +339,7 @@ elif selected_page == "🏆 Hiệu Suất Câu Lạc Bộ":
                 'ConversionRate': '{:.1f}%'
             }).background_gradient(subset=['Pts', 'GD'], cmap='Purples'),
             height=480,
-            use_container_width=True
+            width='stretch'
         )
         
     with col_bars:
@@ -355,7 +355,7 @@ elif selected_page == "🏆 Hiệu Suất Câu Lạc Bộ":
             labels={'GF': 'Số bàn thắng', 'ConversionRate': 'Tỷ lệ chuyển hóa (%)'}
         )
         fig_clubs.update_layout(yaxis={'categoryorder': 'total ascending'}, height=480)
-        st.plotly_chart(fig_clubs, use_container_width=True)
+        st.plotly_chart(fig_clubs,width='stretch')
         
     # So sánh trực tiếp nhóm "Big Six"
     st.markdown("### ⚔️ So Sánh Trực Tiếp Nhóm \"Big Six\"")
@@ -370,7 +370,7 @@ elif selected_page == "🏆 Hiệu Suất Câu Lạc Bộ":
             color='Team',
             color_discrete_sequence=px.colors.qualitative.Set1
         )
-        st.plotly_chart(fig_b6_pts, use_container_width=True)
+        st.plotly_chart(fig_b6_pts,width='stretch')
     with col_b2:
         fig_b6_eff = px.scatter(
             b6_df, x='ShotAccuracy', y='ConversionRate',
@@ -379,7 +379,7 @@ elif selected_page == "🏆 Hiệu Suất Câu Lạc Bộ":
             labels={'ShotAccuracy': 'Sút trúng đích (%)', 'ConversionRate': 'Chuyển hóa bàn thắng (%)'}
         )
         fig_b6_eff.update_traces(textposition='top center')
-        st.plotly_chart(fig_b6_eff, use_container_width=True)
+        st.plotly_chart(fig_b6_eff, width='stretch')
 
 # ============================================================
 # TRANG 3: PHÂN TÍCH CẦU THỦ CHUYÊN SÂU & xG
@@ -474,7 +474,7 @@ elif selected_page == "👟 Phân Tích Cầu Thủ & xG":
         x0=0, x1=max_axis, y0=0, y1=max_axis
     )
     fig_scatter.update_layout(height=520)
-    st.plotly_chart(fig_scatter, use_container_width=True)
+    st.plotly_chart(fig_scatter, width='stretch')
     
     # Bảng xếp hạng chi tiết
     st.markdown("### 📊 Bảng Xếp Hạng Chi Tiết Cầu Thủ")
@@ -488,7 +488,7 @@ elif selected_page == "👟 Phân Tích Cầu Thủ & xG":
             'xG_Diff': '{:+.2f}'
         }).background_gradient(subset=['Goals', 'xG_Diff'], cmap='RdYlGn'),
         height=380,
-        use_container_width=True
+        width='stretch'
     )
 
 # ============================================================
@@ -585,7 +585,7 @@ elif selected_page == "⚔️ So Sánh Đối Đầu Cầu Thủ":
             height=460,
             hovermode='x unified'
         )
-        st.plotly_chart(fig_comp, use_container_width=True)
+        st.plotly_chart(fig_comp, width='stretch')
         
     with col_table_comp:
         st.markdown("### 📋 Bảng Thống Kê So Sánh")
@@ -744,7 +744,7 @@ elif selected_page == "🔮 Dự Đoán Kết Quả Trận Đấu":
         xaxis=dict(title='Xác suất (%)', range=[0, 100]),
         height=320
     )
-    st.plotly_chart(fig_prob, use_container_width=True)
+    st.plotly_chart(fig_prob, width='stretch')
     
     # Bảng so sánh phong độ 5 trận gần nhất
     st.markdown("### 📋 So Sánh Phong Độ Gần Nhất Trước Trận:")
