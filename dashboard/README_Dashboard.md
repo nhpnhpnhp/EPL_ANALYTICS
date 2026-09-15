@@ -1,13 +1,13 @@
 # HƯỚNG DẪN KHỞI CHẠY STREAMLIT DASHBOARD (EPL ANALYTICS)
 
-Dự án đã được tích hợp một ứng dụng **Streamlit Interactive Dashboard** trực quan, hiện đại tại [dashboard/app.py](app.py).
+Dự án đã được tích hợp một ứng dụng **Streamlit Interactive Dashboard** trực quan, hiện đại tại [dashboard/app.py](app.py) với quy mô **74,351 bản ghi thuần Ngoại Hạng Anh (EPL)** và hệ thống biểu đồ nâng cao chuyên sâu.
 
 ---
 
 ## 1. Cách Khởi Chạy Dashboard
 
-### Cách 1: Khởi chạy 1-Click tự động (Khuyên dùng)
-- **Trên Windows**: Double-click vào file `run_dashboard.bat` (hoặc mở terminal gõ `.\run_dashboard.bat`). File script sẽ tự động kiểm tra môi trường, tạo virtual environment và cài đặt thư viện nếu chưa có, sau đó khởi chạy ngay ứng dụng.
+### ⚡ Cách 1: Khởi chạy 1-Click tự động (Khuyên dùng)
+- **Trên Windows**: Double-click vào file `run_dashboard.bat` (hoặc mở terminal gõ `.\run_dashboard.bat`). File script sẽ tự động kiểm tra môi trường, nhận diện `.venv` và khởi chạy ngay ứng dụng.
 - **Trên macOS / Linux**: Mở Terminal tại thư mục gốc dự án và chạy:
   ```bash
   chmod +x run_dashboard.sh
@@ -16,62 +16,55 @@ Dự án đã được tích hợp một ứng dụng **Streamlit Interactive Da
 
 ---
 
-### Cách 2: Khởi chạy thủ công qua dòng lệnh
+### 🛠️ Cách 2: Khởi chạy thủ công qua dòng lệnh
 
 #### Trên Windows (PowerShell / Command Prompt):
 ```powershell
-# 1. Kích hoạt môi trường ảo
-.venv\Scripts\activate
+# Cách nhanh nhất:
+.venv\Scripts\python.exe -m streamlit run dashboard\app.py
 
-# 2. Chạy ứng dụng Streamlit
+# Hoặc kích hoạt môi trường ảo:
+.venv\Scripts\activate
 streamlit run dashboard/app.py
 ```
 
 #### Trên macOS / Linux (Terminal):
 ```bash
-# 1. Kích hoạt môi trường ảo
 source .venv/bin/activate
-
-# 2. Chạy ứng dụng Streamlit
 streamlit run dashboard/app.py
 ```
 
 Sau khi chạy lệnh thành công, trình duyệt web sẽ tự động mở tại địa chỉ:  
 👉 **`http://localhost:8501`**
 
-> [!TIP]
-> Nếu cổng `8501` đang bị chiếm dụng bởi ứng dụng khác, bạn có thể chỉ định cổng khác bằng lệnh:
-> ```bash
-> streamlit run dashboard/app.py --server.port 8502
-> ```
-
 ---
 
-## 2. Các Chức Năng Nổi Bật Của Dashboard
+## 2. Các Chức Năng & Biểu Đồ Nâng Cao Nổi Bật
 
-Ứng dụng gồm **5 trang phân tích chuyên sâu** với giao diện mang phong cách Premier League hiện đại (Dark purple & neon green):
+Ứng dụng được thiết kế lại với cấu trúc **Tabbed Navigation (`st.tabs`)** hiện đại, mang đậm phong cách Premier League:
 
-1. **📊 Trang 1 - Tổng Quan & Lịch Sử EPL (Overview & Trends):**
-   - **KPI Cards**: Tổng số trận (7,601), Tổng bàn thắng, Bàn thắng TB/trận, Tỷ lệ chủ nhà thắng, Cú sút TB/trận.
-   - **Bộ lọc đa mùa giải**: 20 mùa giải liên tiếp từ 2005 đến 2025.
-   - **Biểu đồ xu hướng bàn thắng**: Bar + Line Chart thể hiện mức tăng bàn thắng kỷ lục trong các mùa gần đây.
-   - **Donut Chart**: Phân bổ tỷ lệ Thắng - Hòa - Thua của đội nhà.
-   - **Lợi thế sân nhà (Home Advantage)**: Phân tích trực quan tác động của khán giả và vùng highlight đặc biệt mùa dịch COVID-19 (2020-21).
+1. **📊 Trang 1 - Tổng Quan & Lịch Sử EPL (32 Mùa Giải 1993 - 2025):**
+   - **KPI Cards:** Tổng số trận (12,234), Tổng bàn thắng, Bàn thắng TB/trận, Tỷ lệ chủ nhà thắng, Cú sút TB/trận.
+   - *Tab 1: Xu hướng bàn thắng & Tỷ lệ kết quả:* Bar + Line Chart xu hướng bàn thắng 32 năm và Donut Chart kết quả Thắng/Hòa/Thua.
+   - *Tab 2: Lợi thế sân nhà & Tác động COVID-19:* Phân tích tỷ lệ thắng sân nhà và vùng trũng lịch sử mùa dịch 2020-21 (37.9%).
+   - *Tab 3: 🌍 Bản đồ Dấu ấn Toàn cầu (World Choropleth Map):* Bản đồ nhiệt tương tác toàn cầu thể hiện số lượng cầu thủ, tổng bàn thắng và $xG$ theo từng quốc gia tại EPL.
 
-2. **🏆 Trang 2 - Hiệu Suất Câu Lạc Bộ & Bảng Xếp Hạng (Club Performance):**
-   - **Chế độ xem linh hoạt**: Bảng tổng sắp toàn bộ 20 năm lịch sử HOẶC xem riêng từng mùa giải cụ thể.
-   - **Bảng xếp hạng tương tác**: Điểm số, Trận thắng/hòa/thua, Bàn thắng, Bàn thua, Hiệu số, Tỷ lệ chuyển hóa cơ hội.
-   - **Top CLB ghi bàn nhiều nhất** và biểu đồ so sánh trực diện nhóm **Big Six**.
+2. **🏆 Trang 2 - Hiệu Suất Câu Lạc Bộ & Chiến Thuật:**
+   - *Tab 1: Bảng xếp hạng & Bàn thắng CLB:* Tùy chọn xem Bảng tổng sắp 32 năm lịch sử HOẶC xem riêng từng mùa giải cụ thể.
+   - *Tab 2: 🗺️ Ma trận tương quan (Tactical Correlation Heatmap) & Heatmap 32 năm:* Phân tích tương quan giữa các chỉ số kỹ thuật và Heatmap điểm số CLB qua các thời kỳ.
+   - *Tab 3: ⚔️ So sánh nhóm "Big Six":* Tổng điểm kỷ nguyên EPL và biểu đồ phân tán hiệu suất sút trúng đích vs chuyển hóa bàn thắng.
 
-3. **👟 Trang 3 - Phân Tích Cầu Thủ & xG (Player Analytics):**
-   - Kho dữ liệu hơn **5,800 cầu thủ** qua 11 mùa giải Understat.
-   - Bộ lọc chi tiết: Mùa giải, Câu lạc bộ, Vị trí (Forward, Midfielder, Defender, Goalkeeper), Số phút thi đấu tối thiểu.
-   - **Interactive Scatter Plot: Bàn Thắng Thực Tế vs Bàn Thắng Kỳ Vọng ($xG$)** kèm đường chuẩn $y=x$ để nhận diện ngay các chân sút vượt kỳ vọng (Overperformers) và phung phí cơ hội (Underperformers).
+3. **👟 Trang 3 - Phân Tích Cầu Thủ & Chỉ Số Kỳ Vọng ($xG, xA$):**
+   - Kho dữ liệu hơn **62,000 bản ghi** cầu thủ EPL (tổng kết mùa giải & nhật ký từng trận).
+   - *Tab 1: 🎯 Bàn thắng thực tế vs Bàn thắng kỳ vọng ($xG$):* Interactive Scatter Plot kèm đường chuẩn $y=x$ nhận diện Overperformer & Underperformer.
+   - *Tab 2: 🎻 Phân phối mật độ (Violin Plot):* Trực quan hóa đường cong mật độ xác suất và boxplot của $xG, xA$, Bàn thắng, Số phút theo từng Vị trí thi đấu.
+   - *Tab 3: 🌳 Cây phân cấp bàn thắng (Treemap):* Cấu trúc đóng góp bàn thắng CLB -> Cầu thủ với màu sắc thể hiện độ vượt kỳ vọng.
+   - *Tab 4: 📊 Bảng xếp hạng chi tiết:* Bảng số liệu đa chỉ số có gradient nổi bật.
 
-4. **⚔️ Trang 4 - So Sánh Đối Đầu Cầu Thủ (Head-to-Head Comparison):**
-   - Cho phép chọn bất kỳ 2 cầu thủ để đối đầu trực tiếp toàn bộ sự nghiệp (ví dụ: *Harry Kane vs Mohamed Salah*, *Erling Haaland vs Sergio Agüero*).
-   - Profile card và Bar Chart so sánh đa chiều: Bàn thắng, Kiến tạo, Hiệu suất Per 90, Độ chính xác sút bóng, $xG, xA$.
+4. **⚔️ Trang 4 - So Sánh Đối Đầu Cầu Thủ (Head-to-Head):**
+   - *Tab 1: 🕸️ Biểu đồ Radar đa giác kỹ năng (Spider Chart):* So sánh trực diện 2 ngôi sao trên 7 trục kỹ năng (Goals/90, xG/90, Assists/90, xA/90, Shots/90, KeyPasses/90, Kỷ luật).
+   - *Tab 2: 📋 Thống kê chi tiết & Profile Cards:* Thẻ hồ sơ và Bar Chart so sánh ngang các chỉ số Per 90.
 
-5. **🔮 Trang 5 - AI Match Predictor (Mô Phỏng Dự Đoán Trận Đấu):**
-   - Chọn Đội Chủ Nhà và Đội Khách bất kỳ tại Premier League.
-   - Hệ thống tự động trích xuất phong độ 5 trận gần nhất (Rolling 5-match form) và áp dụng mô hình Machine Learning **Random Forest Classifier** để đưa ra xác suất **Thắng - Hòa - Thua** theo thời gian thực.
+5. **🔮 Trang 5 - AI Match Predictor (Dự Đoán Trận Đấu):**
+   - *Tab 1: 🔮 Mô phỏng dự đoán kết quả:* Machine Learning Random Forest tính toán xác suất Thắng - Hòa - Thua theo thời gian thực dựa trên Rolling 5-match form.
+   - *Tab 2: 🧠 Tầm quan trọng đặc trưng (Feature Importance):* Giải thích trực quan yếu tố phong độ nào ảnh hưởng mạnh nhất tới kết quả.
