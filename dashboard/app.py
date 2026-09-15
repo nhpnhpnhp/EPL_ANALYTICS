@@ -20,80 +20,159 @@ st.set_page_config(
 # Custom CSS giao diện Premier League hiện đại & Card bóng đá
 st.markdown("""
 <style>
-    /* Gradient Header */
+    /* Gradient Header - Phong cách bóng đá Châu Âu đẳng cấp */
     .main-header {
-        background: linear-gradient(135deg, #38003c 0%, #00ff87 100%);
-        padding: 24px;
+        background: linear-gradient(135deg, #17001a 0%, #38003c 70%, #4a004f 100%);
+        border-left: 6px solid #00ff87;
+        padding: 24px 28px;
         border-radius: 14px;
-        color: white;
+        color: #ffffff !important;
         margin-bottom: 24px;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.25);
     }
     .main-header h1 {
-        color: white !important;
+        color: #ffffff !important;
         margin: 0;
         font-weight: 800;
         letter-spacing: -0.5px;
     }
     .main-header p {
-        color: #f1f5f9;
+        color: #00ff87 !important;
         margin-top: 6px;
-        font-size: 1.05rem;
+        font-size: 1.08rem;
+        font-weight: 600;
     }
     
-    /* Card số liệu KPI */
+    /* Card số liệu KPI - Nền tím đậm sang trọng, tương phản cao trên mọi màn hình */
     .metric-card {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
+        background: linear-gradient(135deg, #240026 0%, #38003c 100%);
+        border: 1px solid rgba(0, 255, 135, 0.4);
         border-radius: 12px;
-        padding: 18px;
+        padding: 18px 12px;
         text-align: center;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
     .metric-card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+        border-color: #00ff87;
+        box-shadow: 0 8px 20px rgba(0, 255, 135, 0.3);
     }
     .metric-value {
-        font-size: 2rem;
+        font-size: 2.1rem;
         font-weight: 800;
-        color: #38003c;
+        color: #00ff87 !important;
+        line-height: 1.2;
     }
     .metric-label {
         font-size: 0.85rem;
-        color: #64748b;
+        color: #f1f5f9 !important;
         text-transform: uppercase;
-        letter-spacing: 0.6px;
-        margin-top: 4px;
-        font-weight: 600;
+        letter-spacing: 0.8px;
+        margin-top: 6px;
+        font-weight: 700;
     }
     
-    /* Profile card cầu thủ */
+    /* Profile card cầu thủ - Đảm bảo chữ trắng & neon green luôn sáng rõ */
     .player-card {
-        background: linear-gradient(135deg, #f8fafc 0%, #ede9fe 100%);
-        border: 2px solid #8b5cf6;
-        border-radius: 12px;
-        padding: 16px;
+        border-radius: 14px;
+        padding: 20px;
         text-align: center;
-        margin-bottom: 16px;
+        margin-bottom: 18px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+    .player-card-1 {
+        background: linear-gradient(135deg, #1e092b 0%, #2f0d42 100%);
+        border: 2px solid #8b5cf6;
+    }
+    .player-card-2 {
+        background: linear-gradient(135deg, #0a2318 0%, #133928 100%);
+        border: 2px solid #00ff87;
+    }
+    .player-card h2 {
+        color: #ffffff !important;
+        margin-bottom: 6px;
+        font-weight: 800;
+        font-size: 1.6rem;
+    }
+    .player-card p {
+        color: #e2e8f0 !important;
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+    .player-card p b {
+        color: #ffffff !important;
+        font-weight: 700;
+    }
+    .player-card h3 {
+        color: #00ff87 !important;
+        margin-top: 8px;
+        font-weight: 700;
+        font-size: 1.15rem;
     }
     
-    /* Tab styling */
+    /* Tab navigation styling - Khắc phục hoàn toàn lỗi chữ bị chìm */
     .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
+        border-bottom: 2px solid #334155;
+        padding-bottom: 2px;
     }
     .stTabs [data-baseweb="tab"] {
-        height: 46px;
+        height: 48px;
         white-space: pre-wrap;
-        background-color: #f1f5f9;
+        background-color: #1e293b !important;
         border-radius: 8px 8px 0px 0px;
-        padding: 8px 16px;
-        font-weight: 600;
+        padding: 8px 20px;
+        font-weight: 700;
+        border: 1px solid #334155;
+        border-bottom: none;
+        margin-right: 4px;
+        transition: all 0.2s ease;
+    }
+    .stTabs [data-baseweb="tab"] p,
+    .stTabs [data-baseweb="tab"] div,
+    .stTabs [data-baseweb="tab"] span {
+        color: #cbd5e1 !important;
+        font-weight: 700 !important;
+        font-size: 0.96rem !important;
+    }
+    .stTabs [data-baseweb="tab"]:hover {
+        background-color: #334155 !important;
+    }
+    .stTabs [data-baseweb="tab"]:hover p,
+    .stTabs [data-baseweb="tab"]:hover div,
+    .stTabs [data-baseweb="tab"]:hover span {
+        color: #ffffff !important;
     }
     .stTabs [aria-selected="true"] {
         background-color: #38003c !important;
+        border: 1.5px solid #00ff87 !important;
+        border-bottom: none !important;
+    }
+    .stTabs [aria-selected="true"] p,
+    .stTabs [aria-selected="true"] div,
+    .stTabs [aria-selected="true"] span {
         color: #00ff87 !important;
+        font-weight: 800 !important;
+    }
+    
+    /* Bảng dữ liệu st.table - Tiêu đề & nội dung nổi bật */
+    [data-testid="stTable"] table {
+        border-collapse: collapse;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    [data-testid="stTable"] th {
+        background-color: #240026 !important;
+        color: #00ff87 !important;
+        font-size: 0.95rem !important;
+        font-weight: 700 !important;
+        padding: 10px 14px !important;
+    }
+    [data-testid="stTable"] td {
+        font-weight: 600 !important;
+        padding: 9px 14px !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -250,8 +329,8 @@ if selected_page == "📊 Trang 1: Tổng Quan & Lịch Sử EPL":
                 x=season_goals['Season'],
                 y=season_goals['TotalGoals'],
                 name='Tổng bàn thắng',
-                marker_color='#38003c',
-                opacity=0.75
+                marker=dict(color='#8b5cf6', line=dict(color='#00ff87', width=1)),
+                opacity=0.85
             ))
             fig_goals.add_trace(go.Scatter(
                 x=season_goals['Season'],
@@ -434,10 +513,12 @@ elif selected_page == "🏆 Trang 2: Hiệu Suất CLB & Chiến Thuật":
             fig_clubs = px.bar(
                 top10_gf, x='GF', y='Team', orientation='h',
                 color='ConversionRate',
-                color_continuous_scale='Mint',
+                color_continuous_scale=[[0, '#34d399'], [1, '#065f46']],
                 labels={'GF': 'Số bàn thắng', 'ConversionRate': 'Tỷ lệ chuyển hóa (%)'}
             )
-            fig_clubs.update_layout(yaxis={'categoryorder': 'total ascending'}, height=480)
+            fig_clubs.update_traces(texttemplate='<b>%{x:,} bàn</b> (%{marker.color:.1f}%)', textposition='outside')
+            max_gf = top10_gf['GF'].max() * 1.25 if len(top10_gf) > 0 else 100
+            fig_clubs.update_layout(yaxis={'categoryorder': 'total ascending'}, height=480, xaxis=dict(range=[0, max_gf]))
             st.plotly_chart(fig_clubs, width='stretch')
             
     with tab2_heatmap:
@@ -503,8 +584,12 @@ elif selected_page == "🏆 Trang 2: Hiệu Suất CLB & Chiến Thuật":
                 b6_df, x='Team', y='Pts',
                 title="<b>Tổng Điểm Số Đạt Được Trong Kỷ Nguyên Ngoại Hạng Anh</b>",
                 color='Team',
-                color_discrete_sequence=px.colors.qualitative.Set1
+                color_discrete_sequence=px.colors.qualitative.Set1,
+                text='Pts'
             )
+            fig_b6_pts.update_traces(texttemplate='<b>%{y:,} đ</b>', textposition='outside')
+            max_pts = b6_df['Pts'].max() * 1.15 if len(b6_df) > 0 else 100
+            fig_b6_pts.update_layout(yaxis=dict(range=[0, max_pts]), height=420)
             st.plotly_chart(fig_b6_pts, width='stretch')
         with col_b2:
             fig_b6_eff = px.scatter(
@@ -723,18 +808,18 @@ elif selected_page == "⚔️ Trang 4: So Sánh Đối Đầu Cầu Thủ":
     col_c1, col_c2 = st.columns(2)
     with col_c1:
         st.markdown(f"""
-        <div class="player-card">
+        <div class="player-card player-card-1">
             <h2>🔴 {player1}</h2>
-            <p><b>CLB:</b> {p1_data['Club']} | <b>Vị trí:</b> {p1_data['PositionGroup']} | <b>Quốc tịch:</b> {p1_data['Country']}</p>
-            <h3>⚽ {int(p1_data['Goals'])} Bàn | 👟 {int(p1_data['Assists'])} Kiến Tạo | ⏱️ {int(p1_data['Minutes']):,} Phút</h3>
+            <p><b>CLB:</b> {p1_data['Club']} &nbsp;|&nbsp; <b>Vị trí:</b> {p1_data['PositionGroup']} &nbsp;|&nbsp; <b>Quốc tịch:</b> {p1_data['Country']}</p>
+            <h3>⚽ {int(p1_data['Goals'])} Bàn &nbsp;|&nbsp; 👟 {int(p1_data['Assists'])} Kiến Tạo &nbsp;|&nbsp; ⏱️ {int(p1_data['Minutes']):,} Phút</h3>
         </div>
         """, unsafe_allow_html=True)
     with col_c2:
         st.markdown(f"""
-        <div class="player-card" style="border-color: #00ff87; background: linear-gradient(135deg, #f8fafc 0%, #dcfce7 100%);">
+        <div class="player-card player-card-2">
             <h2>🟢 {player2}</h2>
-            <p><b>CLB:</b> {p2_data['Club']} | <b>Vị trí:</b> {p2_data['PositionGroup']} | <b>Quốc tịch:</b> {p2_data['Country']}</p>
-            <h3>⚽ {int(p2_data['Goals'])} Bàn | 👟 {int(p2_data['Assists'])} Kiến Tạo | ⏱️ {int(p2_data['Minutes']):,} Phút</h3>
+            <p><b>CLB:</b> {p2_data['Club']} &nbsp;|&nbsp; <b>Vị trí:</b> {p2_data['PositionGroup']} &nbsp;|&nbsp; <b>Quốc tịch:</b> {p2_data['Country']}</p>
+            <h3>⚽ {int(p2_data['Goals'])} Bàn &nbsp;|&nbsp; 👟 {int(p2_data['Assists'])} Kiến Tạo &nbsp;|&nbsp; ⏱️ {int(p2_data['Minutes']):,} Phút</h3>
         </div>
         """, unsafe_allow_html=True)
         
@@ -815,8 +900,18 @@ elif selected_page == "⚔️ Trang 4: So Sánh Đối Đầu Cầu Thủ":
             })
             
             fig_bar_comp = go.Figure()
-            fig_bar_comp.add_trace(go.Bar(y=comp_df['Chỉ số'], x=comp_df[player1], name=player1, orientation='h', marker_color='#8b5cf6'))
-            fig_bar_comp.add_trace(go.Bar(y=comp_df['Chỉ số'], x=comp_df[player2], name=player2, orientation='h', marker_color='#00ff87'))
+            fig_bar_comp.add_trace(go.Bar(
+                y=comp_df['Chỉ số'], x=comp_df[player1], name=player1, orientation='h',
+                marker_color='#8b5cf6',
+                text=[f"<b>{v:.2f}</b>" for v in comp_df[player1]],
+                textposition='auto'
+            ))
+            fig_bar_comp.add_trace(go.Bar(
+                y=comp_df['Chỉ số'], x=comp_df[player2], name=player2, orientation='h',
+                marker_color='#00ff87',
+                text=[f"<b>{v:.2f}</b>" for v in comp_df[player2]],
+                textposition='auto'
+            ))
             fig_bar_comp.update_layout(barmode='group', height=420)
             st.plotly_chart(fig_bar_comp, width='stretch')
             
@@ -937,7 +1032,8 @@ elif selected_page == "🔮 Trang 5: AI Match Predictor":
         a_gf5 = np.mean([x['GF'] for x in a_s])
         a_ga5 = np.mean([x['GA'] for x in a_s])
         
-        input_feats = np.array([[h_pts5, h_gf5, h_ga5, a_pts5, a_gf5, a_ga5]])
+        feat_cols = ['H_Pts5', 'H_GF5', 'H_GA5', 'A_Pts5', 'A_GF5', 'A_GA5']
+        input_feats = pd.DataFrame([[h_pts5, h_gf5, h_ga5, a_pts5, a_gf5, a_ga5]], columns=feat_cols)
         probs = clf.predict_proba(input_feats)[0] * 100
         
         tab1_pred, tab2_feat = st.tabs([
@@ -963,6 +1059,10 @@ elif selected_page == "🔮 Trang 5: AI Match Predictor":
                 },
                 text_auto='.1f'
             )
+            fig_prob.update_traces(
+                textposition='inside',
+                textfont=dict(color='white', size=14, family='sans-serif')
+            )
             fig_prob.update_layout(xaxis=dict(range=[0, 100]), height=300)
             st.plotly_chart(fig_prob, width='stretch')
             
@@ -986,6 +1086,12 @@ elif selected_page == "🔮 Trang 5: AI Match Predictor":
                 'Tầm Quan Trọng (%)': (clf.feature_importances_ * 100).round(1)
             }).sort_values('Tầm Quan Trọng (%)', ascending=True)
             
-            fig_fi = px.bar(fi_df, x='Tầm Quan Trọng (%)', y='Đặc Trưng', orientation='h', marker_color='#38003c')
-            fig_fi.update_layout(height=350)
+            fig_fi = px.bar(
+                fi_df, x='Tầm Quan Trọng (%)', y='Đặc Trưng', orientation='h',
+                color='Tầm Quan Trọng (%)',
+                color_continuous_scale=[[0, '#8b5cf6'], [1, '#38003c']]
+            )
+            fig_fi.update_traces(texttemplate='<b>%{x:.1f}%</b>', textposition='outside')
+            max_fi = max(fi_df['Tầm Quan Trọng (%)']) * 1.25 if len(fi_df) > 0 else 100
+            fig_fi.update_layout(height=350, showlegend=False, xaxis=dict(range=[0, max_fi]))
             st.plotly_chart(fig_fi, width='stretch')
