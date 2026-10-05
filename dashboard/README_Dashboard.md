@@ -1,6 +1,6 @@
 # HƯỚNG DẪN KHỞI CHẠY STREAMLIT DASHBOARD (EPL ANALYTICS)
 
-Dự án đã được tích hợp một ứng dụng **Streamlit Interactive Dashboard** trực quan, hiện đại tại [dashboard/app.py](app.py) với quy mô **74,351 bản ghi thuần Ngoại Hạng Anh (EPL)** và hệ thống biểu đồ nâng cao chuyên sâu.
+Dự án đã được tích hợp một ứng dụng **Streamlit Interactive Dashboard** trực quan, hiện đại tại [dashboard/app.py](app.py) với quy mô **71,527 bản ghi thuần Ngoại Hạng Anh (EPL)** và hệ thống biểu đồ nâng cao chuyên sâu.
 
 ---
 
@@ -43,15 +43,15 @@ Sau khi chạy lệnh thành công, trình duyệt web sẽ tự động mở t�
 
 Ứng dụng được thiết kế lại với cấu trúc **Tabbed Navigation (`st.tabs`)** hiện đại, mang đậm phong cách Premier League:
 
-1. **📊 Trang 1 - Tổng Quan & Lịch Sử EPL (32 Mùa Giải 1993 - 2025):**
-   - **KPI Cards:** Tổng số trận (12,234), Tổng bàn thắng, Bàn thắng TB/trận, Tỷ lệ chủ nhà thắng, Cú sút TB/trận.
-   - *Tab 1: Xu hướng bàn thắng & Tỷ lệ kết quả:* Bar + Line Chart xu hướng bàn thắng 32 năm và Donut Chart kết quả Thắng/Hòa/Thua.
+1. **📊 Trang 1 - Tổng Quan & Lịch Sử EPL (25 Mùa Giải 2000 - 2025):**
+   - **KPI Cards:** Tổng số trận (9,410), Tổng bàn thắng, Bàn thắng TB/trận, Tỷ lệ chủ nhà thắng, Cú sút TB/trận.
+   - *Tab 1: Xu hướng bàn thắng & Tỷ lệ kết quả:* Bar + Line Chart xu hướng bàn thắng 25 năm thế kỷ 21 và Donut Chart kết quả Thắng/Hòa/Thua.
    - *Tab 2: Lợi thế sân nhà & Tác động COVID-19:* Phân tích tỷ lệ thắng sân nhà và vùng trũng lịch sử mùa dịch 2020-21 (37.9%).
    - *Tab 3: 🌍 Bản đồ Dấu ấn Toàn cầu (World Choropleth Map):* Bản đồ nhiệt tương tác toàn cầu thể hiện số lượng cầu thủ, tổng bàn thắng và $xG$ theo từng quốc gia tại EPL.
 
 2. **🏆 Trang 2 - Hiệu Suất Câu Lạc Bộ & Chiến Thuật:**
-   - *Tab 1: Bảng xếp hạng & Bàn thắng CLB:* Tùy chọn xem Bảng tổng sắp 32 năm lịch sử HOẶC xem riêng từng mùa giải cụ thể.
-   - *Tab 2: 🗺️ Ma trận tương quan (Tactical Correlation Heatmap) & Heatmap 32 năm:* Phân tích tương quan giữa các chỉ số kỹ thuật và Heatmap điểm số CLB qua các thời kỳ.
+   - *Tab 1: Bảng xếp hạng & Bàn thắng CLB:* Tùy chọn xem Bảng tổng sắp 25 năm thế kỷ 21 lịch sử HOẶC xem riêng từng mùa giải cụ thể.
+   - *Tab 2: 🗺️ Ma trận tương quan (Tactical Correlation Heatmap) & Heatmap 25 năm thế kỷ 21:* Phân tích tương quan giữa các chỉ số kỹ thuật và Heatmap điểm số CLB qua các thời kỳ.
    - *Tab 3: ⚔️ So sánh nhóm "Big Six":* Tổng điểm kỷ nguyên EPL và biểu đồ phân tán hiệu suất sút trúng đích vs chuyển hóa bàn thắng.
 
 3. **👟 Trang 3 - Phân Tích Cầu Thủ & Chỉ Số Kỳ Vọng ($xG, xA$):**

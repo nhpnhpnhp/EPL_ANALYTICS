@@ -119,44 +119,62 @@ def download_matches(
     return downloaded
 
 
-def fetch_understat_players(
+def download_understat_players(
     session: requests.Session,
     start_season: str,
     end_season: str,
+    force: bool,
     timeout: int,
-) -> pd.DataFrame:
-    """Fetch and combine Understat's EPL player table for each season."""
-    rows: list[dict] = []
+) -> int:
+    """Fetch and save Understat's EPL player table for each season as a separate CSV."""
+    downloaded = 0
     scraped_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
     for start_year, end_year in season_values(start_season, end_season):
+        season_str = f"{start_year}-{end_year}"
+        destination = PLAYERS_DIR / f"understat_players_{season_str}.csv"
+        
+        if destination.exists() and not force:
+            print(f"SKIP  {destination.relative_to(PROJECT_ROOT)} (already exists)")
+            downloaded += 1
+            continue
+
         season = f"{start_year}/{str(end_year)[-2:]}"
         page_url = f"https://understat.com/league/EPL/{start_year}"
         url = UNDERSTAT_URL.format(year=start_year)
-        page_response = session.get(page_url, timeout=timeout)
-        page_response.raise_for_status()
-        response = session.get(
-            url,
-            headers={"Referer": page_url, "X-Requested-With": "XMLHttpRequest"},
-            timeout=timeout,
-        )
-        response.raise_for_status()
-        payload = response.json()
-        players = payload.get("players") if isinstance(payload, dict) else None
-        if not isinstance(players, list) or not players:
-            raise ValueError(f"Understat returned no player data for season {season}")
-
-        for player in players:
-            record = dict(player)
-            record["league"] = "EPL"
-            record["year"] = start_year
-            record["season"] = season
-            record["scrape_timestamp"] = scraped_at
-            if record.get("primary_position") is None and record.get("position"):
-                record["primary_position"] = str(record["position"]).split()[0]
-            rows.append(record)
-        print(f"OK    Understat EPL {season}: {len(players):,} players")
-
-    return pd.DataFrame(rows)
+        
+        try:
+            page_response = session.get(page_url, timeout=timeout)
+            page_response.raise_for_status()
+            response = session.get(
+                url,
+                headers={"Referer": page_url, "X-Requested-With": "XMLHttpRequest"},
+                timeout=timeout,
+            )
+            response.raise_for_status()
+            payload = response.json()
+            players = payload.get("players") if isinstance(payload, dict) else None
+            if not isinstance(players, list) or not players:
+                raise ValueError(f"Understat returned no player data for season {season}")
+    
+            rows = []
+            for player in players:
+                record = dict(player)
+                record["league"] = "EPL"
+                record["year"] = start_year
+                record["season"] = season
+                record["scrape_timestamp"] = scraped_at
+                if record.get("primary_position") is None and record.get("position"):
+                    record["primary_position"] = str(record["position"]).split()[0]
+                rows.append(record)
+                
+            df = pd.DataFrame(rows)
+            save_dataframe(df, destination)
+            print(f"OK    {destination.relative_to(PROJECT_ROOT)}: {len(players):,} players")
+            downloaded += 1
+        except (requests.RequestException, ValueError) as error:
+            print(f"ERROR {season_str}: {error}", file=sys.stderr)
+            
+    return downloaded
 
 
 def save_dataframe(dataframe: pd.DataFrame, destination: Path) -> None:
@@ -177,11 +195,6 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--end-season", default=DEFAULT_END_SEASON, type=parse_season)
     parser.add_argument("--players-start-season", default=DEFAULT_PLAYERS_START_SEASON, type=parse_season)
     parser.add_argument("--players-end-season", default=DEFAULT_PLAYERS_END_SEASON, type=parse_season)
-    parser.add_argument(
-        "--players-output",
-        default="understat_players_2014_2024.csv",
-        help="Filename under data/raw/players/ for the combined Understat data.",
-    )
     parser.add_argument("--force", action="store_true", help="Overwrite files that already exist.")
     parser.add_argument("--timeout", type=int, default=60, help="Request timeout in seconds (default: 60).")
     return parser
@@ -196,8 +209,6 @@ def main() -> int:
     players_end_season = f"{args.players_end_season[0]}-{args.players_end_season[1]}"
     if args.timeout <= 0:
         parser.error("--timeout must be greater than zero")
-    if Path(args.players_output).name != args.players_output or not args.players_output.endswith(".csv"):
-        parser.error("--players-output must be a CSV filename, not a path")
 
     try:
         with make_session() as session:
@@ -205,18 +216,12 @@ def main() -> int:
             match_count = download_matches(
                 session, start_season, end_season, args.force, args.timeout
             )
-            destination = PLAYERS_DIR / args.players_output
-            if destination.exists() and not args.force:
-                print(f"SKIP  {destination.relative_to(PROJECT_ROOT)} (already exists)")
-                player_count = 1
-            else:
-                print(f"Downloading Understat players: {players_start_season} -> {players_end_season}")
-                players = fetch_understat_players(
-                    session, players_start_season, players_end_season, args.timeout
-                )
-                save_dataframe(players, destination)
-                print(f"OK    {destination.relative_to(PROJECT_ROOT)}: {len(players):,} rows")
-                player_count = 1
+            
+            print(f"Downloading Understat players: {players_start_season} -> {players_end_season}")
+            player_count = download_understat_players(
+                session, players_start_season, players_end_season, args.force, args.timeout
+            )
+
     except (requests.RequestException, OSError, ValueError) as error:
         print(f"ERROR: {error}", file=sys.stderr)
         return 1
