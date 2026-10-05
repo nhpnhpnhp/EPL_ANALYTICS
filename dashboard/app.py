@@ -203,7 +203,7 @@ def load_data():
             
     if not matches_path or not players_path:
         st.error("""
-        ### ❌ Không tìm thấy tệp dữ liệu đã xử lý!
+        ###  Không tìm thấy tệp dữ liệu đã xử lý!
         Ứng dụng cần 2 tệp dữ liệu sau trong `data/processed/`:
         - `matches_clean.csv`
         - `players_clean.csv`
