@@ -2,8 +2,8 @@
 
 [![Python](https://img.shields.io/badge/Python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue?logo=python)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.30%2B-FF4B4B?logo=streamlit)](https://streamlit.io/)
-[![Records](https://img.shields.io/badge/Records-74%2C350%2B%20EPL%20Rows-success)](#)
-[![Seasons](https://img.shields.io/badge/Seasons-32%20Seasons%20(1993--2025)-purple)](#)
+[![Records](https://img.shields.io/badge/Records-15%2C340%2B%20EPL%20Rows-success)](#)
+[![Seasons](https://img.shields.io/badge/Seasons-25%20Seasons%20(2000--2025)-purple)](#)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](#)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](#)
 
@@ -15,7 +15,7 @@
 
 ## 📑 Mục Lục
 1. [Giới Thiệu Đề Tài & Điểm Nổi Bật](#1-giới-thiệu-đề-tài--điểm-nổi-bật)
-2. [Quy Mô Dữ Liệu Thuần EPL Mở Rộng (>74,000 Bản Ghi)](#2-quy-mô-dữ-liệu-thuần-epl-mở-rộng-74000-bản-ghi)
+2. [Quy Mô Dữ Liệu Thuần EPL Mở Rộng (>15,300 Bản Ghi)](#2-quy-mô-dữ-liệu-thuần-epl-mở-rộng-15300-bản-ghi)
 3. [Cấu Trúc Thư Mục Chuẩn (Project Structure)](#3-cấu-trúc-thư-mục-chuẩn-project-structure)
 4. [Các Biểu Đồ Nâng Cao Được Tích Hợp Trên Dashboard](#4-các-biểu-đồ-nâng-cao-được-tích-hợp-trên-dashboard)
 5. [Hướng Dẫn Cài Đặt & Chạy Trên Mọi Máy (Quick Start)](#5-hướng-dẫn-cài-đặt--chạy-trên-mọi-máy-quick-start)
@@ -33,30 +33,33 @@
 ## 1. Giới Thiệu Đề Tài & Điểm Nổi Bật
 
 Dự án **EPL Analytics** là một giải pháp phân tích dữ liệu thể thao toàn diện, kết hợp chặt chẽ giữa:
-- **Data Engineering**: Thu thập, chuẩn hóa và tổng hợp **100% dữ liệu thuần Ngoại Hạng Anh** qua **32 mùa giải lịch sử (1993/94 – 2024/25)** với hơn **74,300+ bản ghi**.
+- **Data Engineering**: Thu thập, chuẩn hóa và tổng hợp **100% dữ liệu thuần Ngoại Hạng Anh** qua **25 mùa giải (2000/01 – 2024/25)** với hơn **15,340+ bản ghi**.
 - **Exploratory Data Analysis (EDA)**: Giải quyết 8 câu hỏi nghiên cứu then chốt của bóng đá hiện đại với hệ thống biểu đồ nâng cao: **World Choropleth Map**, **Violin Plot**, **Tactical Correlation Heatmap**, **Season Matrix Heatmap**, **Radar Spider Chart**, **Treemap**.
 - **Machine Learning**: Xây dựng mô hình phân loại dự đoán kết quả trận đấu (Thắng - Hòa - Thua) dựa trên chuỗi phong độ cuốn chiếu (*Rolling 5-match window*), kiểm thử ngoài thời gian (*Out-of-Time Validation*) hoàn toàn không rò rỉ dữ liệu (*No Data Leakage*).
 - **Interactive Web App**: Ứng dụng **Streamlit Interactive Hub** được thiết kế lại theo dạng thẻ **Tabs (`st.tabs`)** thông minh, mang phong cách Premier League hiện đại, hỗ trợ tương tác trực quan theo thời gian thực.
 
 ---
 
-## 2. Quy Mô Dữ Liệu Thuần EPL Mở Rộng (>74,000 Bản Ghi)
+## 2. Quy Mô Dữ Liệu Thuần EPL Mở Rộng (>15,300 Bản Ghi)
 
-Dữ liệu của đồ án hoàn toàn thuộc về giải Ngoại Hạng Anh (English Premier League), đạt quy mô kỷ lục:
+Dữ liệu của đồ án hoàn toàn thuộc về giải Ngoại Hạng Anh (English Premier League), đạt quy mô:
 
-1. **Dữ liệu trận đấu (Match Data - 32 Mùa Giải Liên Tiếp):**
-   - **Phạm vi:** Từ mùa giải **1993/94 đến 2024/25** (32 năm lịch sử Ngoại Hạng Anh).
-   - **Quy mô:** **12,234 trận đấu** (`matches_clean.csv`).
+1. **Dữ liệu trận đấu (Match Data - 25 Mùa Giải Liên Tiếp):**
+   - **Phạm vi:** Từ mùa giải **2000/01 đến 2024/25** (25 năm).
+   - **Quy mô:** **9,410 trận đấu** (`matches_clean.csv`).
    - **Chỉ số:** Ngày thi đấu, Đội nhà, Đội khách, Tỷ số cả trận (`FTHG`, `FTAG`, `FTR`), Tỷ số hiệp 1 (`HTHG`, `HTAG`), Cú sút (`HS`, `AS`), Sút trúng đích (`HST`, `AST`), Phạt góc (`HC`, `AC`), Phạm lỗi (`HF`, `AF`), Thẻ vàng (`HY`, `AY`), Thẻ đỏ (`HR`, `AR`).
 
 2. **Dữ liệu cầu thủ đa tầng (Player Performance Data - Thuần EPL):**
-   - **Quy mô:** **62,117 bản ghi** (`players_clean.csv`).
+   - **Quy mô:** **5,887 bản ghi** (`players_clean.csv`).
    - **Bao gồm:**
      - **5,887 bản ghi tổng hợp mùa giải** (Understat 2014-2025): Bàn thắng, kiến tạo, $xG, xA, npxG$, cú sút, key passes, số phút.
-     - **56,230 bản ghi nhật ký từng trận** (FPL Match Performance): Điểm số, phong độ từng vòng đấu, $xGI$, ICT Index.
-     - **Bản đồ quốc tịch:** Tích hợp mã quốc gia ISO-3 của hơn **2,460+ cầu thủ** đến từ **50 quốc gia** trên thế giới.
+     - **Bản đồ quốc tịch:** Tích hợp mã quốc gia ISO-3 của các cầu thủ đến từ nhiều quốc gia trên thế giới.
 
-👉 **TỔNG QUY MÔ DỮ LIỆU ĐÃ XỬ LÝ:** **12,234 + 62,117 = 74,351 BẢN GHI THUẦN NGOẠI HẠNG ANH!**
+3. **Dữ liệu Sân vận động (Stadiums Data):**
+   - **Quy mô:** **46 bản ghi** (`stadiums_clean.csv`).
+   - **Bao gồm:** Thông tin chi tiết về 46 câu lạc bộ từng thi đấu tại EPL (Tên sân, thành phố, sức chứa, tọa độ địa lý, khu vực và năm thành lập).
+
+👉 **TỔNG QUY MÔ DỮ LIỆU ĐÃ XỬ LÝ:** **9,410 + 5,887 + 46 = 15,343 BẢN GHI THUẦN NGOẠI HẠNG ANH!**
 
 ---
 
@@ -73,8 +76,9 @@ EPL_ANALYTICS/
 │   │   └── players/                # Dữ liệu cầu thủ Understat & FPL match logs
 │   │
 │   └── processed/
-│       ├── matches_clean.csv       # 12,234 trận đấu sau khi làm sạch (1993 - 2025)
-│       └── players_clean.csv       # 62,117 bản ghi cầu thủ chuẩn hóa với xG/xA và quốc tịch
+│       ├── matches_clean.csv       # 9,410 trận đấu sau khi làm sạch (2000 - 2025)
+│       ├── players_clean.csv       # 5,887 bản ghi cầu thủ chuẩn hóa với xG/xA và quốc tịch
+│       └── stadiums_clean.csv      # 46 bản ghi thông tin sân vận động, sức chứa, tọa độ địa lý
 │
 ├── dashboard/                      # Thư mục ứng dụng Streamlit Dashboard
 │   ├── app.py                      # Mã nguồn ứng dụng (5 trang chuyên sâu, bố cục Tabs hiện đại)
@@ -189,11 +193,11 @@ Sau khi khởi chạy, trình duyệt web sẽ tự động mở tại: 👉 **`
 
 ## 6. Tóm Tắt Kết Quả 8 Câu Hỏi Nghiên Cứu (Research Findings)
 
-| Mã RQ | Câu hỏi nghiên cứu | Phát hiện & Kết luận chính trên tập dữ liệu mở rộng 32 mùa giải |
+| Mã RQ | Câu hỏi nghiên cứu | Phát hiện & Kết luận chính trên tập dữ liệu mở rộng 25 mùa giải |
 | :--- | :--- | :--- |
-| **RQ1** | Xu hướng bàn thắng EPL thay đổi thế nào qua 32 năm? | Giai đoạn 1993-2015 dao động ổn định ~2.5 - 2.7 bàn/trận; giai đoạn 2022-2024 tăng vọt lên mức kỷ lục **3.28 bàn/trận** nhờ chiến thuật pressing hiện đại và thời gian bù giờ dài hơn. |
-| **RQ2** | Lợi thế sân nhà (*Home Advantage*) có thực sự tồn tại? | Duy trì vững chắc suốt 32 năm (~47% chủ nhà thắng). Riêng mùa dịch COVID 2020-21 (không khán giả), tỷ lệ chủ nhà thắng giảm xuống mức kỷ lục chỉ còn **37.9%**, chứng minh vai trò to lớn của sức ép khán đài. |
-| **RQ3** | Đội bóng nào ổn định và xuất sắc nhất qua hơn 3 thập kỷ? | **Manchester United, Arsenal, Chelsea, Liverpool, Manchester City** thống trị tuyệt đối về số điểm và số trận thắng trong kỷ nguyên Ngoại Hạng Anh. |
+| **RQ1** | Xu hướng bàn thắng EPL thay đổi thế nào qua 25 năm? | Giai đoạn 2000-2015 dao động ổn định ~2.5 - 2.7 bàn/trận; giai đoạn 2022-2024 tăng vọt lên mức kỷ lục **3.28 bàn/trận** nhờ chiến thuật pressing hiện đại và thời gian bù giờ dài hơn. |
+| **RQ2** | Lợi thế sân nhà (*Home Advantage*) có thực sự tồn tại? | Duy trì vững chắc suốt 25 năm (~47% chủ nhà thắng). Riêng mùa dịch COVID 2020-21 (không khán giả), tỷ lệ chủ nhà thắng giảm xuống mức kỷ lục chỉ còn **37.9%**, chứng minh vai trò to lớn của sức ép khán đài. |
+| **RQ3** | Đội bóng nào ổn định và xuất sắc nhất qua hơn 2 thập kỷ? | **Manchester United, Arsenal, Chelsea, Liverpool, Manchester City** thống trị tuyệt đối về số điểm và số trận thắng trong kỷ nguyên Ngoại Hạng Anh. |
 | **RQ4** | Mối quan hệ giữa số cú sút và bàn thắng? | Sút trúng đích (*Shots on Target*) có tương quan tuyến tính rất mạnh với bàn thắng ($r \approx 0.98$). Tuy nhiên chất lượng góc sút ($xG$) mang tính quyết định cao hơn số lượng sút đơn thuần. |
 | **RQ5** | Cầu thủ nào có hiệu suất ghi bàn xuất sắc nhất thập kỷ? | **Harry Kane** và **Mohamed Salah** là hai cỗ máy săn bàn ổn định nhất (>150-200 bàn). **Erling Haaland** đạt hiệu suất Per 90 vô tiền khoáng hậu (>1.0 bàn/90 phút). **Kevin De Bruyne** thống trị về kiến tạo. |
 | **RQ6** | Hiệu suất thi đấu khác biệt thế nào theo vị trí? | Biểu đồ **Violin Plot** phân hóa rõ nét: Tiền đạo tập trung tối đa vào số cú sút & bàn thắng; Tiền vệ chiếm lĩnh kiến tạo ($xA$) và Key Passes; Hậu vệ đóng góp ổn định qua thu hồi bóng và dâng cao hỗ trợ. |

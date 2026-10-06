@@ -1,6 +1,6 @@
 # HƯỚNG DẪN KHỞI CHẠY STREAMLIT DASHBOARD (EPL ANALYTICS)
 
-Dự án đã được tích hợp một ứng dụng **Streamlit Interactive Dashboard** trực quan, hiện đại tại [dashboard/app.py](app.py) với quy mô **71,527 bản ghi thuần Ngoại Hạng Anh (EPL)** và hệ thống biểu đồ nâng cao chuyên sâu.
+Dự án đã được tích hợp một ứng dụng **Streamlit Interactive Dashboard** trực quan, hiện đại tại [dashboard/app.py](app.py) với quy mô **15,343 bản ghi thuần Ngoại Hạng Anh (EPL)** và hệ thống biểu đồ nâng cao chuyên sâu.
 
 ---
 
@@ -55,7 +55,7 @@ Sau khi chạy lệnh thành công, trình duyệt web sẽ tự động mở t�
    - *Tab 3: ⚔️ So sánh nhóm "Big Six":* Tổng điểm kỷ nguyên EPL và biểu đồ phân tán hiệu suất sút trúng đích vs chuyển hóa bàn thắng.
 
 3. **👟 Trang 3 - Phân Tích Cầu Thủ & Chỉ Số Kỳ Vọng ($xG, xA$):**
-   - Kho dữ liệu hơn **62,000 bản ghi** cầu thủ EPL (tổng kết mùa giải & nhật ký từng trận).
+   - Kho dữ liệu gần **6,000 bản ghi** cầu thủ EPL (tổng kết mùa giải).
    - *Tab 1: 🎯 Bàn thắng thực tế vs Bàn thắng kỳ vọng ($xG$):* Interactive Scatter Plot kèm đường chuẩn $y=x$ nhận diện Overperformer & Underperformer.
    - *Tab 2: 🎻 Phân phối mật độ (Violin Plot):* Trực quan hóa đường cong mật độ xác suất và boxplot của $xG, xA$, Bàn thắng, Số phút theo từng Vị trí thi đấu.
    - *Tab 3: 🌳 Cây phân cấp bàn thắng (Treemap):* Cấu trúc đóng góp bàn thắng CLB -> Cầu thủ với màu sắc thể hiện độ vượt kỳ vọng.
