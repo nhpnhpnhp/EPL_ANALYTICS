@@ -66,7 +66,26 @@ data/raw/players/understat_players_2014_2024.csv
 
 Lưu ý: file hiện có trong repository được ghi nhận là dữ liệu Understat, với `scrape_timestamp` trong dữ liệu là `2025-09-01`. Script mới tái tạo dữ liệu trực tiếp từ endpoint Understat, nên kết quả có thể thay đổi nếu Understat cập nhật dữ liệu.
 
-## 3. Cách chạy
+## 3. Dữ liệu sân vận động và vị trí địa lý (Stadiums & Geographic Dataset)
+
+**Mục đích:** Đây là **Bảng dữ liệu thứ 3** của đồ án, cung cấp thông tin thực địa, sức chứa và tọa độ địa lý của 46 câu lạc bộ từng tranh tài tại Premier League trong 25 năm thế kỷ 21 (2000 – 2025). Dữ liệu này dùng để thực hiện thao tác **Join/Merge với bảng trận đấu** (qua khóa `HomeTeam = Club`) và trực quan hóa **Bản đồ không gian tương tác (Geographic Map)** trên Dashboard, đáp ứng trực tiếp tiêu chí Barem 1.1 ($\ge 3$ bảng) và Barem 2.3 (ít nhất 1 biểu đồ dạng bản đồ).
+
+### 3.1. Nguồn gốc dữ liệu (Data Provenance)
+Dữ liệu được thu thập và tổng hợp chuẩn hóa (Curated & Verified Dataset) từ các nguồn chính thống và dữ liệu mở của bóng đá Anh:
+1. **Thông tin CLB & Sân vận động chính thức:** Trích xuất từ hồ sơ câu lạc bộ trên trang chủ Ban tổ chức giải Ngoại hạng Anh: [PremierLeague.com/clubs](https://www.premierleague.com/clubs). Cung cấp tên câu lạc bộ (`Club`), tên sân nhà chính thức (`Stadium`), sức chứa khán đài chuẩn (`Capacity`) và năm thành lập (`Founded`).
+2. **Thông tin địa lý & Thành phố:** Tra cứu và chuẩn hóa từ cơ sở dữ liệu sân vận động Vương quốc Anh: [Wikipedia: List of Premier League stadiums](https://en.wikipedia.org/wiki/List_of_Premier_League_stadiums) và [Football Ground Guide](https://footballgroundguide.com/leagues/england/premier-league). Cung cấp thành phố (`City`) và phân vùng hành chính chính thức của Vương quốc Anh (`Region`: *Greater London, North West, West Midlands, Yorkshire, North East, East Midlands, South East, South West, East of England, Wales*).
+3. **Tọa độ địa lý GPS (WGS84):** Lấy theo hệ tọa độ chuẩn vĩ độ và kinh độ (`Latitude`, `Longitude`) từ OpenStreetMap / Ordnance Survey UK cho từng sân bóng (ví dụ: Old Trafford: `53.4631, -2.2913`, Emirates: `51.5549, -0.1084`, Anfield: `53.4308, -2.9608`...).
+
+### 3.2. Quy trình tổng hợp và chuẩn hóa (Compilation Pipeline)
+1. **Trích xuất danh sách CLB:** Quét danh sách duy nhất các đội bóng xuất hiện ở cột `HomeTeam` trong 9,410 trận đấu lịch sử của `matches_clean.csv` để thu được tập hợp 46 câu lạc bộ duy nhất thế kỷ 21.
+2. **Đồng bộ khóa kết nối:** Chuẩn hóa tên CLB trùng khớp 100% với tên gọi trong bảng thi đấu (ví dụ: `Manchester City`, `Tottenham`, `Wolverhampton`, `Nott'm Forest`).
+3. **Kiểm định tọa độ (Geocoding Validation):** Toàn bộ tọa độ được kiểm tra định vị chuẩn xác trên lãnh thổ Vương quốc Anh (Vĩ độ: 50°N – 56°N, Kinh độ: -5°W đến +2°E).
+4. **Lưu trữ chuẩn:** Xuất ra file dữ liệu sạch tại:
+   ```text
+   data/processed/stadiums_clean.csv
+   ```
+
+## 4. Cách chạy
 
 Chạy từ thư mục gốc `EPL ANALYTICS`:
 
@@ -96,7 +115,7 @@ Xem đầy đủ tham số:
 .\.venv\Scripts\python.exe scripts\download_raw_data.py --help
 ```
 
-## 4. Cơ chế an toàn
+## 5. Cơ chế an toàn
 
 - Tự retry các lỗi HTTP tạm thời như `429`, `500`, `502`, `503`, `504`.
 - Dùng User-Agent nhận diện rõ project.
