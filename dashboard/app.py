@@ -261,30 +261,30 @@ with st.sidebar:
     selected_page = st.radio(
         "Chọn Chức Năng Phân Tích:",
         [
-            "📊 Trang 1: Tổng Quan & Lịch Sử EPL",
-            "🏆 Trang 2: Hiệu Suất CLB & Chiến Thuật",
-            "👟 Trang 3: Phân Tích Cầu Thủ & xG",
-            "⚔️ Trang 4: So Sánh Đối Đầu Cầu Thủ",
-            "🔮 Trang 5: AI Match Predictor"
+            "Tổng Quan & Lịch Sử EPL",
+            "Hiệu Suất CLB & Chiến Thuật",
+            "Phân Tích Cầu Thủ & xG",
+            "So Sánh Đối Đầu Cầu Thủ",
+            "AI Match Predictor"
         ]
     )
     
     st.markdown("---")
     st.markdown(f"""
     **Quy mô dữ liệu (Dataset >= 3 bảng theo Barem):**
-    - 🏟️ **Bảng 1 (Trận đấu):** {len(matches_df):,} trận ({matches_df['Season'].nunique()} mùa giải: 2000 - 2025)
-    - 👟 **Bảng 2 (Cầu thủ):** {len(players_df):,} bản ghi ({players_df['Player'].nunique():,} cầu thủ)
-    - 📍 **Bảng 3 (Sân vận động & Địa lý):** {len(stadiums_df):,} CLB Ngoại hạng Anh
-    - 📈 **Tổng dữ liệu đa bảng:** {len(matches_df) + len(players_df) + len(stadiums_df):,} bản ghi
+    - **Bảng 1 (Trận đấu):** {len(matches_df):,} trận ({matches_df['Season'].nunique()} mùa giải: 2014 - 2025)
+    - **Bảng 2 (Cầu thủ):** {len(players_df):,} bản ghi ({players_df['Player'].nunique():,} cầu thủ)
+    - **Bảng 3 (Sân vận động & Địa lý):** {len(stadiums_df):,} CLB Ngoại hạng Anh
+    - **Tổng dữ liệu đa bảng:** {len(matches_df) + len(players_df) + len(stadiums_df):,} bản ghi
     """)
 
 # ============================================================
 # TRANG 1: TỔNG QUAN & LỊCH SỬ EPL (25 MÙA GIẢI 2000 - 2025)
 # ============================================================
-if selected_page == "📊 Trang 1: Tổng Quan & Lịch Sử EPL":
+if selected_page == "Tổng Quan & Lịch Sử EPL":
     st.markdown(f"""
     <div class="main-header">
-        <h1>📊 Tổng Quan & Xu Hướng Lịch Sử Ngoại Hạng Anh</h1>
+        <h1>Tổng Quan & Xu Hướng Lịch Sử Ngoại Hạng Anh</h1>
         <p>Khai phá toàn bộ 25 mùa giải Premier League thế kỷ 21 (2000/01 – 2024/25) với {len(matches_df):,} trận đấu</p>
     </div>
     """, unsafe_allow_html=True)
@@ -301,7 +301,7 @@ if selected_page == "📊 Trang 1: Tổng Quan & Lịch Sử EPL":
     with col_f2:
         st.write("")
         st.write("")
-        if st.button("Chọn Toàn Bộ 25 Mùa"):
+        if st.button("Chọn Toàn Bộ"):
             selected_seasons = all_seasons
             
     if not selected_seasons:
@@ -332,9 +332,9 @@ if selected_page == "📊 Trang 1: Tổng Quan & Lịch Sử EPL":
     
     # Tổ chức theo TABS
     tab1_overview, tab2_homeadv, tab3_map = st.tabs([
-        "📈 Xu Hướng Lịch Sử & Bàn Thắng",
-        "🏟️ Lợi Thế Sân Nhà & Tác Động COVID-19",
-        "🗺️ Bản Đồ Địa Lý CLB & Sân Vận Động (EPL Map)"
+        "Xu Hướng Lịch Sử & Bàn Thắng",
+        "Lợi Thế Sân Nhà & Tác Động COVID-19",
+        "Bản Đồ Địa Lý CLB & Sân Vận Động (EPL Map)"
     ])
     
     with tab1_overview:
@@ -412,12 +412,12 @@ if selected_page == "📊 Trang 1: Tổng Quan & Lịch Sử EPL":
             hovermode='x unified'
         )
         st.plotly_chart(fig_adv, width='stretch')
-        st.info("💡 **Phát hiện thú vị:** Suốt 25 năm thế kỷ 21 của EPL, tỷ lệ đội nhà giành chiến thắng luôn ổn định quanh mức **46 - 48%**. Riêng duy nhất mùa dịch COVID-19 (2020-21) khi các sân vận động đóng cửa không đón khán giả, tỷ lệ thắng sân nhà sụt giảm chạm đáy chỉ còn **37.9%**, chứng minh vai trò to lớn của sức ép cổ động viên đối với kết quả trận đấu!")
+        st.info("**Phát hiện thú vị:** Suốt 25 năm thế kỷ 21 của EPL, tỷ lệ đội nhà giành chiến thắng luôn ổn định quanh mức **46 - 48%**. Riêng duy nhất mùa dịch COVID-19 (2020-21) khi các sân vận động đóng cửa không đón khán giả, tỷ lệ thắng sân nhà sụt giảm chạm đáy chỉ còn **37.9%**, chứng minh vai trò to lớn của sức ép cổ động viên đối với kết quả trận đấu!")
 
     with tab3_map:
         st.markdown("""
         <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-left: 5px solid #00ff87; border-radius: 8px; padding: 14px 18px; margin-bottom: 20px;">
-            <b style="color: #00ff87; font-size: 1.05rem;">📌 Tích Hợp Dữ Liệu Đa Bảng & Phân Bố Không Gian (Geographic Mapping)</b><br>
+            <b style="color: #00ff87; font-size: 1.05rem;"> Tích Hợp Dữ Liệu Đa Bảng & Phân Bố Không Gian (Geographic Mapping)</b><br>
             <span style="color: #cbd5e1; font-size: 0.92rem;">
             Bản đồ được trực quan hóa nhờ kết nối (<b>Join/Merge</b>) giữa <b>Bảng 1 (Trận Đấu)</b> và <b>Bảng 3 (Sân Vận Động & Tọa Độ Địa Lý)</b> qua khóa chính <code>HomeTeam = Club</code>.<br>
             Đáp ứng trực tiếp 2 tiêu chí bắt buộc trong Barem: <b>Dữ liệu &ge; 3 bảng</b> (Tiêu chí 1.1) và <b>Bắt buộc có ít nhất 1 biểu đồ dạng Bản đồ Không gian</b> (Tiêu chí 2.3).
@@ -541,57 +541,22 @@ if selected_page == "📊 Trang 1: Tổng Quan & Lịch Sử EPL":
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
         )
         st.plotly_chart(fig_stadium_map, width='stretch')
-        
-        # 2 Biểu đồ phụ trợ phân tích địa lý
-        sub_c1, sub_c2 = st.columns(2)
-        with sub_c1:
-            top_cap = stadiums_df.sort_values('Capacity', ascending=False).head(10)
-            fig_cap = px.bar(
-                top_cap,
-                x='Capacity',
-                y='Club',
-                orientation='h',
-                color='Capacity',
-                color_continuous_scale=['#8b5cf6', '#00ff87'],
-                text='Capacity',
-                title="<b>Top 10 Sân Vận Động Có Sức Chứa Lớn Nhất Ngoại Hạng Anh</b>"
-            )
-            fig_cap.update_traces(texttemplate='%{text:,.0f} chỗ', textposition='inside')
-            fig_cap.update_layout(yaxis=dict(autorange='reversed'), height=380, coloraxis_showscale=False)
-            st.plotly_chart(fig_cap, width='stretch')
-            
-        with sub_c2:
-            region_dist = stadiums_df['Region'].value_counts().reset_index()
-            region_dist.columns = ['Region', 'ClubCount']
-            fig_reg = px.pie(
-                region_dist,
-                names='Region',
-                values='ClubCount',
-                hole=0.45,
-                title="<b>Phân Bố Số Lượng CLB Theo Vùng Địa Lý Vương Quốc Anh</b>",
-                color_discrete_sequence=px.colors.qualitative.Plotly
-            )
-            fig_reg.update_layout(height=380)
-            st.plotly_chart(fig_reg, width='stretch')
-            
-        st.info("💡 **Storytelling Địa Lý Bóng Đá Anh:** Bản đồ thể hiện rõ hai 'thánh địa' bóng đá lớn nhất nước Anh là **London (Greater London)** với 9 CLB và vùng **Tây Bắc (North West)** với 9 CLB (nơi đóng quân của hai đại kình địch Manchester United, Manchester City và Liverpool, Everton). Cùng nhau, hai khu vực này sở hữu hơn 60% tổng số danh hiệu vô địch Premier League trong 25 năm qua!")
-
 
 # ============================================================
 # TRANG 2: HIỆU SUẤT CLB & CHIẾN THUẬT (2000 - 2025)
 # ============================================================
-elif selected_page == "🏆 Trang 2: Hiệu Suất CLB & Chiến Thuật":
+elif selected_page == "Hiệu Suất CLB & Chiến Thuật":
     st.markdown(f"""
     <div class="main-header">
-        <h1>🏆 Hiệu Suất Câu Lạc Bộ & Phân Tích Chiến Thuật</h1>
+        <h1>Hiệu Suất Câu Lạc Bộ & Phân Tích Chiến Thuật</h1>
         <p>Bảng tổng sắp 25 năm thế kỷ 21 (2000 - 2025), ma trận tương quan chiến thuật (Tactical Heatmap) và nhóm Big Six</p>
     </div>
     """, unsafe_allow_html=True)
     
     tab1_standings, tab2_heatmap, tab3_big6 = st.tabs([
-        "🥇 Bảng Xếp Hạng & Bàn Thắng CLB",
-        "🗺️ Ma Trận Tương Quan (Tactical Heatmap) & Điểm Số CLB",
-        "⚔️ So Sánh Nhóm Big Six"
+        "Bảng Xếp Hạng & Bàn Thắng CLB",
+        "Ma Trận Tương Quan (Tactical Heatmap) & Điểm Số CLB",
+        "So Sánh Nhóm Big Six"
     ])
     
     # Tính bảng xếp hạng hàm tổng quát
@@ -628,7 +593,7 @@ elif selected_page == "🏆 Trang 2: Hiệu Suất CLB & Chiến Thuật":
     with tab1_standings:
         col_opt1, col_opt2 = st.columns([2, 2])
         with col_opt1:
-            view_mode = st.radio("Chế độ xem:", ["Bảng Tổng Sắp Thế Kỷ 21 (2000 - 2025)", "Xem Chi Tiết Từng Mùa Giải"], horizontal=True)
+            view_mode = st.radio("Chế độ xem:", ["Bảng Tổng Sắp 2014 - 2025", "Xem Chi Tiết Từng Mùa Giải"], horizontal=True)
         with col_opt2:
             all_s_list = sorted(matches_df['Season'].unique().tolist(), reverse=True)
             chosen_s = st.selectbox("Chọn mùa giải:", all_s_list, disabled=(view_mode != "Xem Chi Tiết Từng Mùa Giải"))
@@ -636,9 +601,9 @@ elif selected_page == "🏆 Trang 2: Hiệu Suất CLB & Chiến Thuật":
         target_df = matches_df if view_mode.startswith("Bảng Tổng Sắp") else matches_df[matches_df['Season'] == chosen_s]
         table_result = compute_table(target_df)
         
-        col_t1, col_t2 = st.columns([3, 2])
+        col_t1 = st.container()
         with col_t1:
-            st.markdown(f"### 🏆 Biểu Đồ Điểm Số Xếp Hạng CLB ({'25 Mùa Giải' if view_mode.startswith('Bảng Tổng Sắp') else f'Mùa {chosen_s}'})")
+            st.markdown(f"### Biểu Đồ Điểm Số Xếp Hạng CLB ({'11 Mùa Giải' if view_mode.startswith('Bảng Tổng Sắp') else f'Mùa {chosen_s}'})")
             top_standings = table_result.head(20).copy()
             fig_standings = px.bar(
                 top_standings, x='Pts', y='Team', orientation='h',
@@ -660,21 +625,7 @@ elif selected_page == "🏆 Trang 2: Hiệu Suất CLB & Chiến Thuật":
             )
             st.plotly_chart(fig_standings, width='stretch')
             
-        with col_t2:
-            st.markdown("### ⚽ Top CLB Ghi Nhiều Bàn Thắng Nhất")
-            top10_gf = table_result.head(10)
-            fig_clubs = px.bar(
-                top10_gf, x='GF', y='Team', orientation='h',
-                color='ConversionRate',
-                color_continuous_scale=[[0, '#34d399'], [1, '#065f46']],
-                labels={'GF': 'Số bàn thắng', 'ConversionRate': 'Tỷ lệ chuyển hóa (%)'}
-            )
-            fig_clubs.update_traces(texttemplate='<b>%{x:,} bàn</b> (%{marker.color:.1f}%)', textposition='outside')
-            max_gf = top10_gf['GF'].max() * 1.25 if len(top10_gf) > 0 else 100
-            fig_clubs.update_layout(yaxis={'categoryorder': 'total ascending'}, height=480, xaxis=dict(range=[0, max_gf]))
-            st.plotly_chart(fig_clubs, width='stretch')
-            
-        with st.expander("📋 Xem toàn bộ bảng thống kê chi tiết dạng bảng (W - D - L - GF - GA - GD - Pts)"):
+        with st.expander("Xem toàn bộ bảng thống kê chi tiết dạng bảng (W - D - L - GF - GA - GD - Pts)"):
             st.dataframe(
                 table_result[['Team', 'P', 'W', 'D', 'L', 'GF', 'GA', 'GD', 'Pts', 'ConversionRate']].style.format({
                     'ConversionRate': '{:.1f}%'
@@ -686,7 +637,7 @@ elif selected_page == "🏆 Trang 2: Hiệu Suất CLB & Chiến Thuật":
     with tab2_heatmap:
         col_hm1, col_hm2 = st.columns(2)
         with col_hm1:
-            st.markdown("### 🗺️ Ma Trận Tương Quan Chiến Thuật (Tactical Correlation Heatmap)")
+            st.markdown("### Ma Trận Tương Quan Chiến Thuật (Tactical Correlation Heatmap)")
             # Tính correlation giữa các chỉ số trận đấu
             corr_cols = ['FTHG', 'FTAG', 'HS', 'AS', 'HST', 'AST', 'HC', 'AC', 'HF', 'AF', 'HY', 'AY']
             valid_corr_matches = matches_df[(matches_df['HS'] > 0) & (matches_df['HST'] > 0)][corr_cols]
@@ -703,7 +654,7 @@ elif selected_page == "🏆 Trang 2: Hiệu Suất CLB & Chiến Thuật":
             st.plotly_chart(fig_corr, width='stretch')
             
         with col_hm2:
-            st.markdown("### 📅 Heatmap Điểm Số CLB Qua Các Mùa Giải (Season Performance)")
+            st.markdown("### Heatmap Điểm Số CLB Qua Các Mùa Giải (Season Performance)")
             # Lấy top 12 CLB đá nhiều nhất
             top_teams = matches_df['HomeTeam'].value_counts().head(12).index.tolist()
             recent_seasons = sorted(matches_df['Season'].unique())[-15:] # 15 mùa gần nhất
@@ -735,24 +686,12 @@ elif selected_page == "🏆 Trang 2: Hiệu Suất CLB & Chiến Thuật":
             st.plotly_chart(fig_team_hm, width='stretch')
 
     with tab3_big6:
-        st.markdown("### ⚔️ So Sánh Trực Tiếp Nhóm \"Big Six\" (Arsenal, Chelsea, Liverpool, Man City, Man United, Tottenham)")
+        st.markdown("### So Sánh Trực Tiếp Nhóm \"Big Six\" (Arsenal, Chelsea, Liverpool, Man City, Man United, Tottenham)")
         big_six = ['Arsenal', 'Chelsea', 'Liverpool', 'Manchester City', 'Manchester United', 'Tottenham']
         all_table = compute_table(matches_df)
         b6_df = all_table[all_table['Team'].isin(big_six)].sort_values('Pts', ascending=False)
         
-        col_b1, col_b2 = st.columns(2)
-        with col_b1:
-            fig_b6_pts = px.bar(
-                b6_df, x='Team', y='Pts',
-                title="<b>Tổng Điểm Số Đạt Được Trong Kỷ Nguyên Ngoại Hạng Anh</b>",
-                color='Team',
-                color_discrete_sequence=px.colors.qualitative.Set1,
-                text='Pts'
-            )
-            fig_b6_pts.update_traces(texttemplate='<b>%{y:,} đ</b>', textposition='outside')
-            max_pts = b6_df['Pts'].max() * 1.15 if len(b6_df) > 0 else 100
-            fig_b6_pts.update_layout(yaxis=dict(range=[0, max_pts]), height=420)
-            st.plotly_chart(fig_b6_pts, width='stretch')
+        col_b2 = st.container()
         with col_b2:
             fig_b6_eff = px.scatter(
                 b6_df, x='ShotAccuracy', y='ConversionRate',
@@ -766,11 +705,11 @@ elif selected_page == "🏆 Trang 2: Hiệu Suất CLB & Chiến Thuật":
 # ============================================================
 # TRANG 3: PHÂN TÍCH CẦU THỦ & xG (VIOLIN PLOT, SCATTER, TREEMAP)
 # ============================================================
-elif selected_page == "👟 Trang 3: Phân Tích Cầu Thủ & xG":
+elif selected_page == "Phân Tích Cầu Thủ & xG":
     st.markdown("""
     <div class="main-header">
-        <h1>👟 Phân Tích Cầu Thủ & Chỉ Số Kỳ Vọng ($xG, xA$)</h1>
-        <p>Phân tích hiệu suất dứt điểm, kiến tạo, phân phối mật độ Violin plot và cây phân cấp bàn thắng</p>
+        <h1>Phân Tích Cầu Thủ & Chỉ Số Kỳ Vọng ($xG, xA$)</h1>
+        <p>Phân tích hiệu suất dứt điểm, kiến tạo và mức vượt kỳ vọng xG của từng cầu thủ</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -820,15 +759,13 @@ elif selected_page == "👟 Trang 3: Phân Tích Cầu Thủ & xG":
     p_display = p_display[p_display['Minutes'] >= 90].copy() # Lọc cầu thủ đá ít nhất 90 phút
     
     # TABS
-    tab1_scatter, tab2_violin, tab3_treemap, tab4_table = st.tabs([
-        "🎯 Bàn Thắng Thực Tế vs Bàn Thắng Kỳ Vọng (xG)",
-        "🎻 Phân Phối Mật Độ (Violin Plot)",
-        "🌳 Cây Phân Cấp Bàn Thắng (Treemap)",
-        "📊 Bảng Xếp Hạng Chi Tiết Cầu Thủ"
+    tab1_scatter, tab4_table = st.tabs([
+        "Bàn Thắng Thực Tế vs Bàn Thắng Kỳ Vọng (xG)",
+        "Bảng Xếp Hạng Chi Tiết Cầu Thủ"
     ])
     
     with tab1_scatter:
-        st.markdown("### 🎯 Bàn Thắng Thực Tế vs Bàn Thắng Kỳ Vọng ($xG$)")
+        st.markdown("### Bàn Thắng Thực Tế vs Bàn Thắng Kỳ Vọng ($xG$)")
         st.write("Đường chéo nét đứt $y=x$ là mốc chuẩn kỳ vọng: Các điểm **nằm phía trên đường chéo** là những sát thủ **vượt kỳ vọng (Overperformers)**; các điểm nằm phía dưới thể hiện sự phung phí cơ hội.")
         
         max_axis = max(p_display['Goals'].max() if len(p_display)>0 else 10, p_display['xG'].max() if len(p_display)>0 else 10) + 2
@@ -848,72 +785,20 @@ elif selected_page == "👟 Trang 3: Phân Tích Cầu Thủ & xG":
         )
         fig_scatter.update_layout(height=520)
         st.plotly_chart(fig_scatter, width='stretch')
-        
-    with tab2_violin:
-        st.markdown("### 🎻 Phân Phối Mật Độ Xác Suất (Violin Plot)")
-        st.write("Biểu đồ Violin kết hợp giữa đường cong mật độ (KDE) và khung Boxplot bên trong để chỉ ra sự phân hóa giữa các vị trí:")
-        
-        v_col1, v_col2 = st.columns([1, 3])
-        with v_col1:
-            v_metric = st.selectbox(
-                "Chọn chỉ số phân tích mật độ:",
-                ['xG', 'Goals', 'xA', 'Assists', 'Shots', 'Minutes'],
-                format_func=lambda x: {
-                    'xG': '🎯 Bàn Thắng Kỳ Vọng (xG)',
-                    'Goals': '⚽ Bàn Thắng Thực Tế',
-                    'xA': '👟 Kiến Tạo Kỳ Vọng (xA)',
-                    'Assists': '🎯 Kiến Tạo Thực Tế',
-                    'Shots': '🚀 Số Cú Sút',
-                    'Minutes': '⏱️ Số Phút Thi Đấu'
-                }[x]
-            )
-        with v_col2:
-            fig_violin = px.violin(
-                p_display,
-                y=v_metric,
-                x='PositionGroup',
-                color='PositionGroup',
-                box=True, # Hiển thị boxplot bên trong
-                points="all", # Hiển thị các chấm dữ liệu
-                hover_data=['Player', 'Club'],
-                title=f"<b>Phân Phối Mật Độ Chỉ Số {v_metric} Theo Nhóm Vị Trí</b>",
-                color_discrete_map={'Forward': '#e74c3c', 'Midfielder': '#3498db', 'Defender': '#2ecc71', 'Goalkeeper': '#f1c40f'}
-            )
-            fig_violin.update_layout(height=480)
-            st.plotly_chart(fig_violin, width='stretch')
-            
-    with tab3_treemap:
-        st.markdown("### 🌳 Cây Phân Cấp Đóng Góp Bàn Thắng (Treemap)")
-        st.write("Nhấp vào từng ô Câu Lạc Bộ để phóng to và xem chi tiết đóng góp của từng chân sút trong đội hình:")
-        
-        top_scorers_tree = p_display[p_display['Goals'] > 0].copy()
-        if len(top_scorers_tree) > 0:
-            fig_tree = px.treemap(
-                top_scorers_tree,
-                path=['Club', 'Player'],
-                values='Goals',
-                color='xG_Diff',
-                color_continuous_scale='RdYlGn',
-                title="<b>Cơ Cấu Bàn Thắng: Câu Lạc Bộ -> Cầu Thủ (Màu sắc thể hiện độ vượt kỳ vọng xG)</b>"
-            )
-            fig_tree.update_layout(height=520)
-            st.plotly_chart(fig_tree, width='stretch')
-        else:
-            st.info("Không có dữ liệu bàn thắng phù hợp với bộ lọc hiện tại.")
             
     with tab4_table:
-        st.markdown("### 📊 Biểu Đồ Top Cầu Thủ Xuất Sắc Hàng Đầu")
+        st.markdown("### Biểu Đồ Top Cầu Thủ Xuất Sắc Hàng Đầu")
         col_rnk1, col_rnk2 = st.columns([1, 2])
         with col_rnk1:
             sort_by = st.selectbox("Tiêu chí xếp hạng:", ['Goals', 'xG', 'Assists', 'xA', 'xG_Diff', 'Shots', 'Minutes'],
                                    format_func=lambda x: {
-                                       'Goals': '⚽ Bàn thắng thực tế',
-                                       'xG': '🎯 Bàn thắng kỳ vọng (xG)',
-                                       'Assists': '👟 Kiến tạo thực tế',
-                                       'xA': '🪄 Kiến tạo kỳ vọng (xA)',
-                                       'xG_Diff': '⚡ Hiệu số xG Diff (Hiệu quả dứt điểm)',
-                                       'Shots': '💥 Tổng số cú sút',
-                                       'Minutes': '⏱️ Số phút thi đấu'
+                                       'Goals': ' Bàn thắng thực tế',
+                                       'xG': ' Bàn thắng kỳ vọng (xG)',
+                                       'Assists': ' Kiến tạo thực tế',
+                                       'xA': ' Kiến tạo kỳ vọng (xA)',
+                                       'xG_Diff': ' Hiệu số xG Diff (Hiệu quả dứt điểm)',
+                                       'Shots': ' Tổng số cú sút',
+                                       'Minutes': ' Số phút thi đấu'
                                    }[x])
             top_n = st.slider("Số lượng hiển thị trên biểu đồ:", 5, 25, 12)
             
@@ -956,7 +841,7 @@ elif selected_page == "👟 Trang 3: Phân Tích Cầu Thủ & xG":
             )
             st.plotly_chart(fig_rank, width='stretch')
             
-        with st.expander("📋 Xem toàn bộ danh sách số liệu cầu thủ dạng bảng"):
+        with st.expander(" Xem toàn bộ danh sách số liệu cầu thủ dạng bảng"):
             show_cols = ['Player', 'Club', 'PositionGroup', 'Appearances', 'Minutes', 'Goals', 'xG', 'xG_Diff', 'Assists', 'xA', 'Shots']
             st.dataframe(
                 sorted_p[[c for c in show_cols if c in sorted_p.columns]].style.format({
@@ -969,11 +854,11 @@ elif selected_page == "👟 Trang 3: Phân Tích Cầu Thủ & xG":
 # ============================================================
 # TRANG 4: SO SÁNH ĐỐI ĐẦU CẦU THỦ (RADAR SPIDER CHART)
 # ============================================================
-elif selected_page == "⚔️ Trang 4: So Sánh Đối Đầu Cầu Thủ":
+elif selected_page == "So Sánh Đối Đầu Cầu Thủ":
     st.markdown("""
     <div class="main-header">
-        <h1>⚔️ So Sánh Đối Đầu Trực Diện Cầu Thủ (Head-to-Head)</h1>
-        <p>So sánh đa giác kỹ năng Radar Spider Chart 8 chiều và bảng thống kê chi tiết sự nghiệp</p>
+        <h1> So Sánh Đối Đầu Trực Diện Cầu Thủ (Head-to-Head)</h1>
+        <p>So sánh đa giác kỹ năng Radar Spider Chart 7 chiều và bảng thống kê chi tiết sự nghiệp</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -1024,27 +909,27 @@ elif selected_page == "⚔️ Trang 4: So Sánh Đối Đầu Cầu Thủ":
     with col_c1:
         st.markdown(f"""
         <div class="player-card player-card-1">
-            <h2>🔴 {player1}</h2>
+            <h2> {player1}</h2>
             <p><b>CLB:</b> {p1_data['Club']} &nbsp;|&nbsp; <b>Vị trí:</b> {p1_data['PositionGroup']}</p>
-            <h3>⚽ {int(p1_data['Goals'])} Bàn &nbsp;|&nbsp; 👟 {int(p1_data['Assists'])} Kiến Tạo &nbsp;|&nbsp; ⏱️ {int(p1_data['Minutes']):,} Phút</h3>
+            <h3> {int(p1_data['Goals'])} Bàn &nbsp;|&nbsp; {int(p1_data['Assists'])} Kiến Tạo &nbsp;|&nbsp; {int(p1_data['Minutes']):,} Phút</h3>
         </div>
         """, unsafe_allow_html=True)
     with col_c2:
         st.markdown(f"""
         <div class="player-card player-card-2">
-            <h2>🟢 {player2}</h2>
+            <h2>{player2}</h2>
             <p><b>CLB:</b> {p2_data['Club']} &nbsp;|&nbsp; <b>Vị trí:</b> {p2_data['PositionGroup']}</p>
-            <h3>⚽ {int(p2_data['Goals'])} Bàn &nbsp;|&nbsp; 👟 {int(p2_data['Assists'])} Kiến Tạo &nbsp;|&nbsp; ⏱️ {int(p2_data['Minutes']):,} Phút</h3>
+            <h3>{int(p2_data['Goals'])} Bàn &nbsp;|&nbsp; {int(p2_data['Assists'])} Kiến Tạo &nbsp;|&nbsp; {int(p2_data['Minutes']):,} Phút</h3>
         </div>
         """, unsafe_allow_html=True)
         
     tab1_radar, tab2_bars = st.tabs([
-        "🕸️ Biểu Đồ Radar Đa Giác Kỹ Năng (Spider Chart)",
-        "📋 So Sánh Cột & Thống Kê Chi Tiết"
+        "Biểu Đồ Radar Đa Giác Kỹ Năng (Spider Chart)",
+        "Bảng Thống Kê Chi Tiết"
     ])
     
     with tab1_radar:
-        st.markdown("### 🕸️ Biểu Đồ Radar Kỹ Năng Đa Chiều (Spider Chart)")
+        st.markdown("### Biểu Đồ Radar Kỹ Năng Đa Chiều (Spider Chart)")
         st.write("So sánh trực quan đa trục năng lực giữa hai cầu thủ theo chuẩn phân tích bóng đá chuyên nghiệp:")
         
         # Chuẩn hóa giá trị từ 0 đến 100 để vẽ radar đẹp
@@ -1102,61 +987,8 @@ elif selected_page == "⚔️ Trang 4: So Sánh Đối Đầu Cầu Thủ":
         st.plotly_chart(fig_radar, width='stretch')
         
     with tab2_bars:
-        col_tb1, col_tb2 = st.columns(2)
-        with col_tb1:
-            st.markdown("### 📊 Biểu Đồ So Sánh Các Chỉ Số Hiệu Suất / 90 Phút")
-            metrics_compare = ['G90', 'xG90', 'A90', 'xA90', 'Shots90', 'KP90']
-            labels_compare = ['Bàn thắng/90', 'xG/90', 'Kiến tạo/90', 'xA/90', 'Cú sút/90', 'KeyPasses/90']
-            
-            comp_df = pd.DataFrame({
-                'Chỉ số': labels_compare,
-                player1: [p1_data[m] for m in metrics_compare],
-                player2: [p2_data[m] for m in metrics_compare]
-            })
-            
-            fig_bar_comp = go.Figure()
-            fig_bar_comp.add_trace(go.Bar(
-                y=comp_df['Chỉ số'], x=comp_df[player1], name=player1, orientation='h',
-                marker_color='#8b5cf6',
-                text=[f"<b>{v:.2f}</b>" for v in comp_df[player1]],
-                textposition='auto'
-            ))
-            fig_bar_comp.add_trace(go.Bar(
-                y=comp_df['Chỉ số'], x=comp_df[player2], name=player2, orientation='h',
-                marker_color='#00ff87',
-                text=[f"<b>{v:.2f}</b>" for v in comp_df[player2]],
-                textposition='auto'
-            ))
-            fig_bar_comp.update_layout(barmode='group', height=420)
-            st.plotly_chart(fig_bar_comp, width='stretch')
-            
-        with col_tb2:
-            st.markdown("### 📊 Biểu Đồ So Sánh Các Chỉ Số Tấn Công")
-            comp_metrics = ['Bàn thắng', 'Kỳ vọng (xG)', 'Kiến tạo', 'Kỳ vọng (xA)', 'Tổng cú sút', 'Chuyền quyết định']
-            p1_vals = [p1_data['Goals'], round(p1_data['xG'], 1), p1_data['Assists'], round(p1_data['xA'], 1), p1_data['Shots'], p1_data['KeyPasses']]
-            p2_vals = [p2_data['Goals'], round(p2_data['xG'], 1), p2_data['Assists'], round(p2_data['xA'], 1), p2_data['Shots'], p2_data['KeyPasses']]
-
-            fig_h2h = go.Figure()
-            fig_h2h.add_trace(go.Bar(
-                y=comp_metrics, x=p1_vals, name=player1, orientation='h',
-                marker_color='#00ff87', text=[f"{v:.1f}" if isinstance(v, float) else f"{int(v)}" for v in p1_vals],
-                textposition='inside'
-            ))
-            fig_h2h.add_trace(go.Bar(
-                y=comp_metrics, x=p2_vals, name=player2, orientation='h',
-                marker_color='#8b5cf6', text=[f"{v:.1f}" if isinstance(v, float) else f"{int(v)}" for v in p2_vals],
-                textposition='inside'
-            ))
-            fig_h2h.update_layout(
-                barmode='group',
-                title=f"<b>{player1} vs {player2}</b>",
-                height=440,
-                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-                margin=dict(l=20, r=20, t=50, b=20)
-            )
-            st.plotly_chart(fig_h2h, width='stretch')
-            
-            with st.expander("📋 Xem số liệu thống kê chi tiết dạng bảng"):
+        with st.container():
+            with st.expander(" Xem số liệu thống kê chi tiết dạng bảng", expanded=True):
                 stat_table = pd.DataFrame({
                     'Hạng Mục': ['Số phút thi đấu', 'Bàn thắng', 'Bàn thắng kỳ vọng (xG)', 'Hiệu số xG Diff', 'Kiến tạo', 'Kiến tạo kỳ vọng (xA)', 'Tổng cú sút', 'Đường chuyền quyết định', 'Thẻ vàng', 'Thẻ đỏ'],
                     player1: [
@@ -1189,10 +1021,10 @@ elif selected_page == "⚔️ Trang 4: So Sánh Đối Đầu Cầu Thủ":
 # ============================================================
 # TRANG 5: AI MATCH PREDICTOR
 # ============================================================
-elif selected_page == "🔮 Trang 5: AI Match Predictor":
+elif selected_page == "AI Match Predictor":
     st.markdown("""
     <div class="main-header">
-        <h1>🔮 AI Match Predictor (Mô Phỏng Dự Đoán Trận Đấu EPL)</h1>
+        <h1>AI Match Predictor (Mô Phỏng Dự Đoán Trận Đấu EPL)</h1>
         <p>Mô hình Machine Learning Random Forest dự đoán xác suất Thắng - Hòa - Thua dựa trên phong độ trượt (Rolling Form)</p>
     </div>
     """, unsafe_allow_html=True)
@@ -1254,12 +1086,12 @@ elif selected_page == "🔮 Trang 5: AI Match Predictor":
     
     col_pr1, col_pr2 = st.columns(2)
     with col_pr1:
-        home_team = st.selectbox("🏟️ Chọn Đội Chủ Nhà:", avail_teams, index=avail_teams.index("Arsenal") if "Arsenal" in avail_teams else 0)
+        home_team = st.selectbox("Chọn Đội Chủ Nhà:", avail_teams, index=avail_teams.index("Arsenal") if "Arsenal" in avail_teams else 0)
     with col_pr2:
-        away_team = st.selectbox("✈️ Chọn Đội Khách:", avail_teams, index=avail_teams.index("Chelsea") if "Chelsea" in avail_teams else min(1, len(avail_teams)-1))
+        away_team = st.selectbox("Chọn Đội Khách:", avail_teams, index=avail_teams.index("Chelsea") if "Chelsea" in avail_teams else min(1, len(avail_teams)-1))
         
     if home_team == away_team:
-        st.warning("⚠️ Vui lòng chọn hai đội bóng khác nhau để dự đoán trận đấu!")
+        st.warning("Vui lòng chọn hai đội bóng khác nhau để dự đoán trận đấu!")
     else:
         h_s = latest_stats[home_team]
         a_s = latest_stats[away_team]
@@ -1277,12 +1109,12 @@ elif selected_page == "🔮 Trang 5: AI Match Predictor":
         probs = clf.predict_proba(input_feats)[0] * 100
         
         tab1_pred, tab2_feat = st.tabs([
-            "🔮 Kết Quả Dự Đoán & Xác Suất Trận Đấu",
-            "🧠 Giải Thích Mô Hình & Trọng Số Đặc Trưng"
+            " Kết Quả Dự Đoán & Xác Suất Trận Đấu",
+            " Giải Thích Mô Hình & Trọng Số Đặc Trưng"
         ])
         
         with tab1_pred:
-            st.markdown(f"### ⚔️ Dự Đoán Kết Quả: **{home_team}** vs **{away_team}**")
+            st.markdown(f"### Dự Đoán Kết Quả: **{home_team}** vs **{away_team}**")
             
             prob_df = pd.DataFrame({
                 'Kịch Bản': [f'{home_team} Thắng', 'Hòa', f'{away_team} Thắng'],
@@ -1307,7 +1139,7 @@ elif selected_page == "🔮 Trang 5: AI Match Predictor":
             st.plotly_chart(fig_prob, width='stretch')
             
             # Form comparison
-            st.markdown("### 📊 Biểu Đồ So Sánh Phong Độ 5 Trận Gần Nhất")
+            st.markdown("### Biểu Đồ So Sánh Phong Độ 5 Trận Gần Nhất")
             form_cats = ['Điểm TB/trận', 'Bàn thắng TB/trận', 'Bàn thua TB/trận']
             h_vals = [round(h_pts5, 2), round(h_gf5, 2), round(h_ga5, 2)]
             a_vals = [round(a_pts5, 2), round(a_gf5, 2), round(a_ga5, 2)]
@@ -1331,7 +1163,7 @@ elif selected_page == "🔮 Trang 5: AI Match Predictor":
             )
             st.plotly_chart(fig_form, width='stretch')
             
-            with st.expander("📋 Xem số liệu phong độ chi tiết dạng bảng"):
+            with st.expander(" Xem số liệu phong độ chi tiết dạng bảng"):
                 fc_df = pd.DataFrame({
                     'Chỉ số phong độ 5 trận': ['Điểm số TB / trận', 'Bàn thắng TB / trận', 'Bàn thua TB / trận'],
                     home_team: [f"{h_pts5:.2f}", f"{h_gf5:.2f}", f"{h_ga5:.2f}"],
@@ -1340,7 +1172,7 @@ elif selected_page == "🔮 Trang 5: AI Match Predictor":
                 st.table(fc_df.set_index('Chỉ số phong độ 5 trận'))
             
         with tab2_feat:
-            st.markdown("### 🧠 Tầm Quan Trọng Của Các Yếu Tố (Feature Importance)")
+            st.markdown("### Tầm Quan Trọng Của Các Yếu Tố (Feature Importance)")
             st.write("Mức độ đóng góp của từng chỉ số phong độ vào quyết định phân loại của mô hình Random Forest:")
             
             feat_names = ['Chủ Nhà - Điểm 5 trận', 'Chủ Nhà - Bàn thắng 5 trận', 'Chủ Nhà - Bàn thua 5 trận',
