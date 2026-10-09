@@ -1029,55 +1029,45 @@ elif selected_page == "AI Match Predictor":
     </div>
     """, unsafe_allow_html=True)
     
-    # Huấn luyện mô hình Random Forest trên Match Data
+    # Huấn luyện mô hình Random Forest trên Match Data (Cách 1: Đọc từ file đã xuất)
     @st.cache_resource
     def train_predictor():
-        m_df = matches_df.copy().sort_values('Date').reset_index(drop=True)
-        # Tạo team stats cho 5 trận gần nhất
-        team_stats = {}
-        rows = []
-        for idx, row in m_df.iterrows():
-            ht = row['HomeTeam']
-            at = row['AwayTeam']
-            
-            h_form = team_stats.get(ht, [])
-            a_form = team_stats.get(at, [])
-            
-            if len(h_form) >= 5 and len(a_form) >= 5:
-                h_p = np.mean([x['Pts'] for x in h_form[-5:]])
-                h_gf = np.mean([x['GF'] for x in h_form[-5:]])
-                h_ga = np.mean([x['GA'] for x in h_form[-5:]])
+        import json
+        
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        ml_feat_path = None
+        json_path = None
+        
+        # Hỗ trợ đường dẫn tương đối và tuyệt đối
+        candidates = [
+            (os.path.join(base_dir, 'data', 'processed', 'ml_features.csv'),
+             os.path.join(base_dir, 'data', 'processed', 'latest_team_stats.json')),
+            (os.path.join('data', 'processed', 'ml_features.csv'),
+             os.path.join('data', 'processed', 'latest_team_stats.json')),
+            (os.path.join('..', 'data', 'processed', 'ml_features.csv'),
+             os.path.join('..', 'data', 'processed', 'latest_team_stats.json')),
+        ]
+        
+        for m_path, j_path in candidates:
+            if os.path.exists(m_path) and os.path.exists(j_path):
+                ml_feat_path = m_path
+                json_path = j_path
+                break
                 
-                a_p = np.mean([x['Pts'] for x in a_form[-5:]])
-                a_gf = np.mean([x['GF'] for x in a_form[-5:]])
-                a_ga = np.mean([x['GA'] for x in a_form[-5:]])
-                
-                res_target = 0 if row['FTR'] == 'H' else (1 if row['FTR'] == 'D' else 2)
-                rows.append({
-                    'H_Pts5': h_p, 'H_GF5': h_gf, 'H_GA5': h_ga,
-                    'A_Pts5': a_p, 'A_GF5': a_gf, 'A_GA5': a_ga,
-                    'Target': res_target
-                })
-                
-            # Update stats
-            h_pts = 3 if row['FTR'] == 'H' else (1 if row['FTR'] == 'D' else 0)
-            a_pts = 3 if row['FTR'] == 'A' else (1 if row['FTR'] == 'D' else 0)
+        if not ml_feat_path or not json_path:
+            st.error("Không tìm thấy file `ml_features.csv` hoặc `latest_team_stats.json`! Vui lòng tạo file trước.")
+            st.stop()
             
-            if ht not in team_stats: team_stats[ht] = []
-            if at not in team_stats: team_stats[at] = []
+        feat_df = pd.read_csv(ml_feat_path)
+        with open(json_path, 'r', encoding='utf-8') as f:
+            latest_team_stats = json.load(f)
             
-            team_stats[ht].append({'Pts': h_pts, 'GF': row['FTHG'], 'GA': row['FTAG']})
-            team_stats[at].append({'Pts': a_pts, 'GF': row['FTAG'], 'GA': row['FTHG']})
-            
-        feat_df = pd.DataFrame(rows)
         X = feat_df[['H_Pts5', 'H_GF5', 'H_GA5', 'A_Pts5', 'A_GF5', 'A_GA5']]
         y = feat_df['Target']
         
         clf = RandomForestClassifier(n_estimators=100, max_depth=6, random_state=42)
         clf.fit(X, y)
         
-        # Lưu lại phong độ hiện tại của các đội
-        latest_team_stats = {t: stats[-5:] for t, stats in team_stats.items() if len(stats) >= 5}
         return clf, latest_team_stats
         
     clf, latest_stats = train_predictor()
